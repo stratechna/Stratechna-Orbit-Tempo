@@ -72,9 +72,9 @@ def dar_acesso(contacto: str) -> str:
     u.save() if not u.is_new() else u.insert()
     if PAPEL_CLIENTE not in [r.role for r in u.roles]:
         u.add_roles(PAPEL_CLIENTE)
-    if c.user != email:
-        c.user = email
-        c.save(ignore_permissions=True)
+    # gravar o campo e não o documento: criar o utilizador já mexeu no contacto (TimestampMismatch)
+    if frappe.db.get_value("Contact", contacto, "user") != email:
+        frappe.db.set_value("Contact", contacto, "user", email)
     return email
 
 

@@ -1,0 +1,19 @@
+/* O pouco que o Tempo junta ao CSS do portal. */
+.stats-grid { margin-bottom: 4px; }
+.empty-state { text-align: center; color: var(--text-muted); padding: 32px; }
+.btn[disabled] { opacity: .5; cursor: not-allowed; }
+@media (max-width: 768px) {
+  .tp-desp { grid-template-columns: minmax(0, 1fr) 90px 34px !important; }
+  .tp-desp > :nth-child(2) { grid-column: 1 / -1; order: -1; }
+  .tp-desp > :nth-child(1) { grid-column: 1; }
+  .tp-desp > :nth-child(3) { grid-column: 2 / 4; }
+  .tp-desp > :nth-child(4) { grid-column: 1; }
+}
+/* O portal esconde as colunas 3, 4 e 6 de todas as tabelas no telemóvel (pensado para a tabela do
+   extrato dele, com mais colunas). Aqui escondia o Tempo e o Saldo — no Tempo, as tabelas deslizam. */
+@media (max-width: 768px) {
+  #tempo .table-wrap { overflow-x: auto; }
+  #tempo .table-wrap table th, #tempo .table-wrap table td { display: table-cell; }
+  #tempo .table-wrap table td:nth-child(2) { max-width: none; min-width: 160px; }
+}
+#tempo td.mono, #tempo td .mono { white-space: nowrap; }

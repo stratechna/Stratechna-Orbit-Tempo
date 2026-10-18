@@ -13,6 +13,7 @@ PAPEL = "Tempo Utilizador"
 def garantir():
     papel()
     campos()
+    projetos()
     parametros_fiscais()
     definicoes()
     frappe.db.commit()
@@ -33,6 +34,16 @@ def campos():
         novos.append(dict(fieldname="custom_hd_ticket", label="Bilhete", fieldtype="Link", options="HD Ticket",
                           insert_after="tempo_acordo"))
     create_custom_fields({"Timesheet": novos}, ignore_validate=True, update=True)
+
+
+def projetos():
+    """Cronómetros em paralelo e registos manuais de horas já passadas sobrepõem-se no tempo — como no
+    portal, onde vários cronómetros correm ao mesmo tempo. O ERPNext recusa-o por omissão (OverlapError)."""
+    if not frappe.db.exists("DocType", "Projects Settings"):
+        return
+    for campo in ("ignore_user_time_overlap", "ignore_employee_time_overlap"):
+        if frappe.get_meta("Projects Settings").has_field(campo) and not frappe.db.get_single_value("Projects Settings", campo):
+            frappe.db.set_single_value("Projects Settings", campo, 1)
 
 
 def papel():

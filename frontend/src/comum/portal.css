@@ -1,0 +1,911 @@
+/* Cópia do src/index.css do portal Stratechna (decisão T1, 18-10-2026): o Tempo tem o desenho do
+   portal — mesmas cores, barra lateral, cartões e tabelas. A cor --red passa a ser a da marca do
+   freelancer quando está definida (main.jsx). Ao mudar o portal, voltar a copiar. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --red: #880000;
+  --webgate: #7977BB;
+  --webgate-hover: #5B59A0;
+  --mbontime: #2D5A4A;
+  --mbontime-hover: #1e3d32;
+  --red-hover: #660000;
+  --red-light: #880000;
+  /* --red-light era usado tanto para fundos de botão (ok, texto branco por
+     cima) como para texto/ícones/linhas sobre fundo escuro (má ideia — é
+     literalmente igual a --red, ~1.6:1 de contraste contra --bg/--bg-card,
+     abaixo do mínimo legível). --red-text é a variante pensada para essa
+     segunda situação — mesma família de vermelho, ~4.5-5:1 de contraste. */
+  --red-text: #ef4444;
+  --slate: #3D5163;
+  --slate-dark: #2a3a47;
+  --bg: #111314;
+  --bg-sidebar: #161a1d;
+  --bg-card: #1a1f23;
+  --bg-card-hover: #1f252a;
+  --border: #2A3A4A;
+  --border-light: #334455;
+  --text: #E0E0E0;
+  --text-muted: #BBCCDD;
+  --text-dim: #AAB8C8;
+  --success: #2a7a4f;
+  --success-text: #4ade80;
+  --warning: #7a6020;
+  --warning-text: #fbbf24;
+  --danger: #7a2020;
+  --danger-text: #f87171;
+
+  --font: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --sidebar-w: 304px;   /* 240 -> 276 -> 304: +26% no total, pedido do utilizador 14-09-2026 */
+  --topbar-h: 56px;
+  --transition: 150ms ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--font); cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: var(--font); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-light); }
+
+/* Layout */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 100;
+  transition: transform var(--transition);
+}
+
+.sidebar-logo {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-logo img {
+  height: 28px;
+  width: auto;
+}
+
+.sidebar-logo-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 12px 8px;
+  overflow-y: auto;
+}
+
+.sidebar-section {
+  margin-bottom: 4px;
+}
+
+.sidebar-section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 12px 4px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.sidebar-link:hover {
+  background: var(--bg-card);
+  color: var(--text);
+}
+
+.sidebar-link.active {
+  background: rgba(136, 0, 0, 0.15);
+  color: var(--text);
+  border-left: 2px solid var(--red);
+  margin-left: -1px;
+}
+
+.sidebar-link svg { flex-shrink: 0; opacity: 0.7; }
+.sidebar-link.active svg { opacity: 1; color: var(--red-text); }
+
+.sidebar-footer {
+  padding: 12px 8px;
+  border-top: 1px solid var(--border);
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  transition: background var(--transition);
+}
+
+.sidebar-user:hover { background: var(--bg-card); cursor: pointer; }
+
+.sidebar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.sidebar-user-info { flex: 1; min-width: 0; overflow: hidden; display: flex; flex-direction: column; }
+.sidebar-user-name { font-size: 0.85rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.sidebar-user-email { font-size: 0.72rem; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+
+/* Main content */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  height: var(--topbar-h);
+  margin-left: var(--sidebar-w);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  background: rgba(17, 19, 20, 0.9);
+  backdrop-filter: blur(8px);
+  z-index: 50;
+}
+
+.topbar-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.topbar-spacer { flex: 1; }
+
+.page-body {
+  flex: 1;
+  padding: 24px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Stat cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text);
+  line-height: 1;
+}
+
+.stat-value.positive { color: var(--success-text); }
+.stat-value.negative { color: var(--danger-text); }
+.stat-value.warning { color: var(--warning-text); }
+
+.stat-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3px;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+
+.tab {
+  padding: 6px 16px;
+  border-radius: calc(var(--radius) - 2px);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.tab:hover { color: var(--text); }
+
+.tab.active {
+  background: var(--bg-card);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Table */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+thead tr {
+  background: linear-gradient(135deg, var(--slate), var(--slate-dark));
+}
+
+thead th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #aac;
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+
+tbody tr:hover { background: var(--bg-card-hover); }
+
+tbody td {
+  padding: 10px 14px;
+  color: var(--text);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-green { background: rgba(74, 222, 128, 0.1); color: var(--success-text); border: 1px solid rgba(74, 222, 128, 0.2); }
+.badge-red { background: rgba(248, 113, 113, 0.1); color: var(--danger-text); border: 1px solid rgba(248, 113, 113, 0.2); }
+.badge-yellow { background: rgba(251, 191, 36, 0.1); color: var(--warning-text); border: 1px solid rgba(251, 191, 36, 0.2); }
+.badge-blue { background: rgba(96, 165, 250, 0.1); color: #93c5fd; border: 1px solid rgba(96, 165, 250, 0.2); }
+.badge-grey { background: rgba(100, 116, 139, 0.1); color: var(--text-muted); border: 1px solid rgba(100, 116, 139, 0.2); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all var(--transition);
+  cursor: pointer;
+  border: none;
+  /* 25-09-2026 — nem a regra global `button` (linha 58) nem esta classe
+     definiam cor de texto, por isso um botao `.btn` sem cor no style
+     inline caia na cor por omissao do browser (quase preta) sobre o
+     fundo escuro do painel: 1,27:1 de contraste, texto praticamente
+     invisivel. Visto pelo utilizador no botao "Corrigir" do painel
+     "A precisar de atencao" em /saas, mas afectava todos os `.btn`
+     sem cor propria. As variantes (.btn-primary/.btn-secondary/
+     .btn-ghost) e qualquer `color` no style inline continuam a mandar:
+     vêm depois desta regra ou têm mais especificidade. */
+  color: var(--text);
+}
+
+.btn-primary {
+  background: var(--red);
+  color: white;
+}
+.btn-primary:hover { background: var(--red-hover); }
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--border-light); }
+
+.btn-ghost {
+  color: var(--text-muted);
+  padding: 6px 10px;
+}
+.btn-ghost:hover { background: var(--bg-card); color: var(--text); }
+
+.btn-sm { padding: 5px 12px; font-size: 0.8rem; }
+.btn-icon { padding: 7px; }
+
+/* Forms */
+.form-group { margin-bottom: 16px; }
+.form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: border-color var(--transition);
+  outline: none;
+}
+
+.form-input:focus { border-color: var(--slate); }
+.form-input::placeholder { color: var(--text-dim); }
+
+/* Login page */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(136,0,0,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(61,81,99,0.1) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.login-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  z-index: 1;
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-logo img { height: 36px; margin-bottom: 12px; }
+.login-logo h1 { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+.login-logo p { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+
+.login-error {
+  background: var(--danger);
+  border: 1px solid rgba(248,113,113,0.3);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--danger-text);
+  margin-bottom: 16px;
+}
+
+/* Loading */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-top-color: var(--red);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+}
+
+.empty-state svg { margin-bottom: 12px; opacity: 0.3; }
+.empty-state h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.empty-state p { font-size: 0.85rem; }
+
+/* Alert */
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
+
+.alert-warning { background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2); color: var(--warning-text); }
+.alert-danger { background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.2); color: var(--danger-text); }
+.alert-success { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); color: var(--success-text); }
+
+/* Mobile sidebar toggle */
+.sidebar-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  transition: all var(--transition);
+}
+
+.sidebar-toggle:hover { background: var(--bg-card); color: var(--text); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0,0,0,0.5);
+  }
+
+  .main-content {
+    margin-left: 0;
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100vw;
+  }
+
+  .page-body {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .page-body {
+    padding: 16px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Overlay for mobile sidebar */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 99;
+  backdrop-filter: blur(2px);
+}
+
+.sidebar-overlay.open { display: block; }
+
+/* Mono numbers */
+.mono { font-family: var(--font-mono); }
+
+/* Section header */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.section-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    margin-left: 0 !important;
+    overflow: hidden;
+  }
+  .topbar-brand {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .topbar-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .sidebar-toggle {
+    flex-shrink: 0;
+  }
+}
+
+[contenteditable][data-placeholder]:empty::before {
+  content: attr(data-placeholder);
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE — Portal Stratechna
+   Adicionado em 20 Mai 2026
+   ═══════════════════════════════════════════════════════════ */
+
+/* Prevenir overflow horizontal global */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Page content */
+  .page-content {
+    padding: 12px !important;
+    overflow-x: hidden;
+  }
+
+  .page-header {
+    margin-bottom: 12px;
+  }
+
+  /* Topbar — não extender para a direita */
+  .topbar {
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  /* Tabs horizontais (abas de departamento) — scroll horizontal em vez de overflow */
+  .dept-tabs, [class*="tab"] {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap !important;
+    max-width: 100%;
+  }
+
+  /* Tabelas — scroll horizontal via .table-wrap (já definido) */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+
+  /* Formulários — campos em coluna */
+  .form-row, [class*="form-row"] {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  /* Botões — não cortar */
+  button, .btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Grids de stats — 1 coluna em mobile muito pequeno */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Cards — sem min-width fixo */
+  .card {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Saldos — wrap */
+  .saldos-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Cabeçalhos de página — wrap para botões não saírem */
+  .page-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Textos longos — truncar */
+  .truncate-mobile {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  /* Inputs e selects — largura total */
+  input, select, textarea {
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* Duas colunas side-by-side → coluna única */
+  .two-col-layout {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  /* Prevenir que divs com flex row causem overflow */
+  .page-content > div,
+  .card > div {
+    max-width: 100%;
+  }
+}
+
+/* Extra pequeno — iPhone SE e similares */
+@media (max-width: 390px) {
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .section-title {
+    font-size: 1rem !important;
+  }
+
+  .btn {
+    font-size: 0.82rem !important;
+    padding: 7px 12px !important;
+  }
+}
+
+/* Fix: card com overflow:hidden não bloqueia scroll da table-wrap no mobile */
+@media (max-width: 768px) {
+  .card {
+    overflow: visible !important;
+  }
+  .table-wrap {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+  .table-wrap table {
+    min-width: 500px;
+  }
+}
+
+/* Contenção total mobile — Admin */
+@media (max-width: 768px) {
+  /* Forçar todos os filhos directos a não exceder o viewport */
+  .main-content * {
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  /* Excepções — elementos que precisam de largura própria */
+  .main-content table,
+  .main-content .table-wrap {
+    max-width: calc(100vw - 24px);
+  }
+  /* Flex rows que causam overflow */
+  .main-content > * > div[style] {
+    flex-wrap: wrap;
+  }
+  /* minWidth inline não pode exceder viewport */
+  .main-content [style*="minWidth"],
+  .main-content [style*="min-width"] {
+    min-width: 0 !important;
+  }
+}
+
+/* Contenção total mobile — Admin */
+@media (max-width: 768px) {
+  /* Forçar todos os filhos directos a não exceder o viewport */
+  .main-content * {
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  /* Excepções — elementos que precisam de largura própria */
+  .main-content table,
+  .main-content .table-wrap {
+    max-width: calc(100vw - 24px);
+  }
+  /* Flex rows que causam overflow */
+  .main-content > * > div[style] {
+    flex-wrap: wrap;
+  }
+  /* minWidth inline não pode exceder viewport */
+  .main-content [style*="minWidth"],
+  .main-content [style*="min-width"] {
+    min-width: 0 !important;
+  }
+}
+
+/* Fix iOS zoom em inputs — impede zoom automático que causa overflow */
+@media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Tabela extrato horas — esconder colunas no mobile */
+@media (max-width: 768px) {
+  /* Esconder colunas Fonte, Tipo e Saldo à Data — manter Data, Desc, Horas, Acções */
+  .table-wrap table th:nth-child(3),
+  .table-wrap table td:nth-child(3),
+  .table-wrap table th:nth-child(4),
+  .table-wrap table td:nth-child(4),
+  .table-wrap table th:nth-child(6),
+  .table-wrap table td:nth-child(6) {
+    display: none;
+  }
+  /* Descrição — wrap em vez de min-width */
+  .table-wrap table td:nth-child(2) {
+    white-space: normal !important;
+    max-width: 160px;
+    word-break: break-word;
+  }
+}
+
+
+/* ── Menu lateral recolhível (02-10-2026) ───────────────────────────────
+   Só em ecrã largo; no telemóvel o menu continua a ser a gaveta. Recolher
+   = mudar --sidebar-w: sidebar, topbar e main-content já a usam. */
+.sidebar { transition: transform var(--transition), width var(--transition); }
+.main-content, .topbar { transition: margin-left var(--transition); }
+.sidebar-logo-mini { display: none; }
+.sidebar-recolher {
+  display: none; align-items: center; justify-content: center;
+  width: 30px; height: 30px; margin-right: 4px; flex-shrink: 0;
+  background: none; border: 1px solid var(--border); border-radius: var(--radius);
+  color: var(--text-muted); cursor: pointer;
+}
+.sidebar-recolher:hover { background: var(--bg-card); color: var(--text); }
+
+@media (min-width: 769px) {
+  .sidebar-recolher { display: inline-flex; }
+  .layout.sidebar-recolhida { --sidebar-w: 64px; }
+  .layout.sidebar-recolhida .sidebar-label,
+  .layout.sidebar-recolhida .sidebar-section-label,
+  .layout.sidebar-recolhida .sidebar-externo,
+  .layout.sidebar-recolhida .sidebar-ficha-barra,
+  .layout.sidebar-recolhida .sidebar-legal,
+  .layout.sidebar-recolhida .sidebar-user-info,
+  .layout.sidebar-recolhida .sidebar-logout-icon,
+  .layout.sidebar-recolhida .sidebar-logo-cheio { display: none !important; }
+  .layout.sidebar-recolhida .sidebar-logo-mini { display: block; width: auto; height: 38px; max-width: 100%; object-fit: contain; margin: 0 auto; }
+  .layout.sidebar-recolhida .sidebar > div:first-child { padding: 16px 0 12px !important; }
+  .layout.sidebar-recolhida .sidebar-nav { padding: 12px 6px; }
+  .layout.sidebar-recolhida .sidebar-link { justify-content: center; padding: 10px 0; gap: 0; }
+  .layout.sidebar-recolhida .sidebar-link.active { margin-left: 0; border-left: 0; box-shadow: inset 2px 0 0 var(--red); }
+  .layout.sidebar-recolhida .sidebar-section + .sidebar-section {
+    border-top: 1px solid var(--border); margin-top: 6px; padding-top: 6px;
+  }
+  .layout.sidebar-recolhida .sidebar-user { justify-content: center; padding: 10px 0; }
+}

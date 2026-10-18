@@ -9,55 +9,112 @@ A carregar…,Cargando…
 A cobrar,A cobrar
 A data de fim é anterior à de início.,La fecha de fin es anterior a la de inicio.
 A duração não pode ser negativa.,La duración no puede ser negativa.
+"A fatura emite-se no seu software certificado. Aqui fica só o número, para o cliente a ver em Documentos.","La factura se emite en su software certificado. Aquí solo queda el número, para que el cliente la vea en Documentos."
+A ligação expirou ou já foi usada. Peça outra.,El enlace ha caducado o ya se ha usado. Pida otro.
+A minha empresa,Mi empresa
+A sua ligação de entrada — {0},Su enlace de acceso — {0}
+Abater no próximo,Descontar en el siguiente
+Aberto em,Abierto el
+Aceitar,Aceptar
+Aceitar este orçamento?,¿Aceptar este presupuesto?
+Aceite,Aceptado
+Acesso dado. O cliente entra em /cliente com uma ligação por email.,Acceso concedido. El cliente entra en /cliente con un enlace por correo.
 Acordo,Acuerdo
 Acordo guardado.,Acuerdo guardado.
+Acordos e packs,Acuerdos y bonos
 Ainda não há clientes.,Todavía no hay clientes.
 Ainda não há estudos.,Todavía no hay estudios.
+Ainda não há horas registadas para a sua empresa.,Todavía no hay horas registradas para su empresa.
+Ainda não há packs.,Todavía no hay bonos.
 Ainda não há parâmetros de {0}; usam-se os de {1}.,Todavía no hay parámetros de {0}; se usan los de {1}.
+Ainda não há preço/hora por omissão. Faça o estudo do preço/hora em «Preço/hora».,Todavía no hay precio/hora por defecto. Haga el estudio en «Precio/hora».
+Ainda não tem nenhum pack.,Todavía no tiene ningún bono.
+Ajuste,Ajuste
 Ano,Año
 Anos,Años
+Anular,Anular
+Anular este registo? A folha de horas é cancelada.,¿Anular este registro? La hoja de horas se cancela.
 Ao mais próximo,Al más próximo
 Apagar,Eliminar
 Apagar este registo?,¿Eliminar este registro?
+Aprovado,Aprobado
+Aprovar,Aprobar
+Aprovação tácita do extrato (dias),Aprobación tácita del extracto (días)
+Aprovações,Aprobaciones
 Arredondamento por omissão,Redondeo por defecto
 Arredondar,Redondear
+Artigo do ERP,Artículo del ERP
+As horas têm de ser mais do que zero.,Las horas deben ser más de cero.
+Assunto,Asunto
 Ativo,Activo
+Até,Hasta
 Avença,Iguala
 Avença (em breve),Iguala (próximamente)
+Avisar antes do fim do pack (dias),Avisar antes del fin del bono (días)
+Avisar quando o saldo ficar abaixo de (horas),Avisar cuando el saldo baje de (horas)
 Banco e pagamentos,Banco y pagos
 Base de incidência da Segurança Social,Base de cotización a la Seguridad Social (PT)
 Bloco (min),Bloque (min)
+Bloquear,Bloquear
+Cada registo vai para a folha de horas do Orbit e para o extrato do cliente,Cada registro va a la hoja de horas de Orbit y al extracto del cliente
 Cancelar,Cancelar
 Categoria,Categoría
 Cliente,Cliente
+Cliente criado.,Cliente creado.
 Cliente guardado.,Cliente guardado.
+Cliente · acordo,Cliente · acuerdo
 Clientes,Clientes
+Clientes e extratos,Clientes y extractos
+Cobrar à hora,Cobrar por horas
 Coeficiente do regime simplificado,Coeficiente del régimen simplificado (PT)
 "Comercial, propostas, administração e formação não se faturam. Entre 55 % e 70 % é o habitual.","Lo comercial, las propuestas, la administración y la formación no se facturan. Lo habitual es entre el 55 % y el 70 %."
+"Começa num aparelho, pára noutro — ao parar, fica na folha de horas","Empieza en un dispositivo, para en otro — al parar, queda en la hoja de horas"
 Como aparece aos seus clientes.,Cómo le ven sus clientes.
 Computador,Ordenador
 Comunicações,Comunicaciones
+Conta corrente de tempo por acordo,Cuenta corriente de tiempo por acuerdo
 Contabilidade,Contabilidad
 Contabilista / gestoria,Gestoría / contable
+Contactos e acesso ao portal do cliente,Contactos y acceso al portal del cliente
+Contestado,Impugnado
+Contestado: {0},Impugnado: {0}
+Contestar,Impugnar
+Contestar uma linha,Impugnar una línea
+Contratadas,Contratadas
 Cor,Color
+Criar,Crear
 Criar o primeiro cliente,Crear el primer cliente
+Cronómetros,Cronómetros
+Cronómetros a correr,Cronómetros en marcha
+Crédito de horas,Crédito de horas
+Crédito do pack lançado.,Crédito del bono registrado.
 Cuota de autónomos,Cuota de autónomos
 Cuota de autónomos (€/mês),Cuota de autónomos (€/mes)
 Custo da estrutura/hora,Coste de estructura/hora
+Dados,Datos
+Dar acesso ao portal,Dar acceso al portal
 Das Definições,De los Ajustes
 Data,Fecha
+Defina primeiro o preço/hora (estudo do preço/hora ou Definições).,Defina primero el precio/hora (estudio del precio/hora o Ajustes).
 Definições,Ajustes
 Definições guardadas.,Ajustes guardados.
+Descartado.,Descartado.
 Descartar,Descartar
 Descartar este cronómetro sem guardar?,¿Descartar este cronómetro sin guardar?
 Desconto,Descuento
+Desconto (%),Descuento (%)
 Desconto máximo sem descer do preço mínimo: {0} %.,Descuento máximo sin bajar del precio mínimo: {0} %.
 Descrição,Descripción
+Descrição do Movimento,Descripción del movimiento
+Desde,Desde
 Deslocações,Desplazamientos
 Despesa,Gasto
 Despesas da estrutura,Gastos de estructura
 Despesas por ano,Gastos por año
 Dias por semana,Días por semana
+Diga o motivo.,Indique el motivo.
+Diga o que não está certo nesta linha.,Indique qué no es correcto en esta línea.
+Documentos,Documentos
 Doença e imprevistos (dias),Enfermedad e imprevistos (días)
 Duração,Duración
 "Duração inválida. Exemplos: 1:30, 90, 1,5h.","Duración no válida. Ejemplos: 1:30, 90, 1,5h."
@@ -65,40 +122,100 @@ E se trabalhar mais ou menos horas?,¿Y si trabaja más o menos horas?
 Editar,Editar
 Editar acordo,Editar acuerdo
 Editar cliente,Editar cliente
+Editar pack,Editar bono
 Editar registo,Editar registro
 Email,Correo electrónico
+Email ou palavra-passe errados.,Correo o contraseña incorrectos.
+Empresa,Empresa
+Entrada de horas,Entrada de horas
+Entrar,Entrar
+Enviado,Enviado
+Enviado ao responsável.,Enviado al responsable.
+Enviar,Enviar
+Enviar este extrato ao cliente? As linhas ficam trancadas.,¿Enviar este extracto al cliente? Las líneas quedan bloqueadas.
+Enviar-me uma ligação de entrada,Enviarme un enlace de acceso
 Equipamento,Equipos
 Escolha o acordo.,Elija el acuerdo.
 Escritório / cowork / parte da casa,Oficina / coworking / parte de la casa
 Espanha — autónomo,España — autónomo
 Espanha — sociedad limitada,España — sociedad limitada
 Espaço,Espacio
+Essa linha não pertence a este extrato.,Esa línea no pertenece a este extracto.
+Esta conta não está ligada a nenhum cliente.,Esta cuenta no está vinculada a ningún cliente.
+Esta folha de horas já está num extrato enviado ao cliente. Corrija com um ajuste.,Esta hoja de horas ya está en un extracto enviado al cliente. Corríjala con un ajuste.
+Esta semana,Esta semana
+Estado,Estado
+Este cronómetro não é seu.,Este cronómetro no es suyo.
+Este extrato já foi enviado.,Este extracto ya se ha enviado.
+Este extrato não está à espera de aprovação.,Este extracto no está pendiente de aprobación.
+Este orçamento já não pode ser aceite.,Este presupuesto ya no se puede aceptar.
 Este registo já está num extrato e não pode ser apagado.,Este registro ya está en un extracto y no se puede eliminar.
+Este registo já está num extrato enviado. Corrija com um ajuste.,Este registro ya está en un extracto enviado. Corríjalo con un ajuste.
 Este registo já está num extrato. Corrija com um registo de ajuste.,Este registro ya está en un extracto. Corríjalo con un registro de ajuste.
 Estimativa: os parâmetros fiscais ainda não foram validados por um contabilista.,Estimación: los parámetros fiscales aún no han sido validados por una gestoría.
+Estudo,Estudio
 Estudo de {0},Estudio de {0}
 Estudo do preço/hora,Estudio del precio/hora
 Estudo guardado.,Estudio guardado.
 Estudo guardado. O preço recomendado passa a ser o preço/hora por omissão.,Estudio guardado. El precio recomendado pasa a ser el precio/hora por defecto.
 Estudos,Estudios
+"Ex.: 10.8 · 10,5 · 10H30m · 1H30M · 90m","Ej.: 10.8 · 10,5 · 10H30m · 1H30M · 90m"
 "Exemplos: 1:30, 90 (minutos), 1,5h. O arredondamento do acordo aplica-se ao gravar.","Ejemplos: 1:30, 90 (minutos), 1,5h. El redondeo del acuerdo se aplica al guardar."
+Expandir o menu,Expandir el menú
+Expiradas,Caducadas
+Expiração,Caducidad
+Expiração do pack (validade {0}),Caducidad del bono (validez {0})
+Extrato,Extracto
+Extrato aprovado.,Extracto aprobado.
+Extrato de Horas,Extracto de horas
+Extrato de horas,Extracto de horas
+Extrato de horas de {0} a {1},Extracto de horas del {0} al {1}
+Extrato em rascunho.,Extracto en borrador.
+Extrato enviado.,Extracto enviado.
+Extrato {0} contestado,Extracto {0} impugnado
+Extratos,Extractos
+Extratos à espera do cliente,Extractos pendientes del cliente
+Falta o nome do cliente.,Falta el nombre del cliente.
 Faltam parâmetros fiscais para este regime: {0}.,Faltan parámetros fiscales para este régimen: {0}.
+Fatura,Factura
+Fatura registada.,Factura registrada.
+Fatura {0},Factura {0}
+Faturado,Facturado
+Faturas,Facturas
 Faturação mínima por ano,Facturación mínima por año
 Faturação recomendada por ano,Facturación recomendada por año
 Faturável,Facturable
+Faturável (sem marcar = oferta: aparece ao cliente mas não gasta saldo),Facturable (sin marcar = cortesía: el cliente la ve pero no gasta saldo)
 Faça o estudo do preço/hora para o calcular.,Haga el estudio del precio/hora para calcularlo.
+Fechar,Cerrar
+Fechar um período,Cerrar un periodo
+"Feche o período, envie ao cliente e registe a fatura emitida","Cierre el periodo, envíelo al cliente y registre la factura emitida"
 Feriados (dias),Festivos (días)
+Fim,Fin
+Fim previsto,Fin previsto
+Folha de horas,Hoja de horas
+Folhas de horas (ERP),Hojas de horas (ERP)
+Folhas de horas no ERP,Hojas de horas en el ERP
 Formação,Formación
 Formação (dias),Formación (días)
 Férias (dias),Vacaciones (días)
+Gastas,Gastadas
+Gestão de Clientes,Gestión de clientes
 Guardar,Guardar
 Guardar e usar este preço,Guardar y usar este precio
+Guardar o tempo,Guardar el tiempo
 Hoje,Hoy
 Hora,Por horas
+Hora de serviço,Hora de servicio
+"Hora de serviço, cobrada pelo tempo registado.","Hora de servicio, cobrada por el tiempo registrado."
 Horas,Horas
 Horas a cobrar,Horas a cobrar
 Horas disponíveis por ano,Horas disponibles por año
+Horas do pack,Horas del bono
 Horas faturáveis por ano,Horas facturables por año
+"Horas inválidas. Exemplos: 10.8 · 10,5 · 10H30m · 1H30M · 90m","Horas no válidas. Ejemplos: 10.8 · 10,5 · 10H30m · 1H30M · 90m"
+Horas para além do pack/avença,Horas más allá del bono/iguala
+Horas por mês,Horas al mes
 Horas por semana,Horas por semana
 Horas trabalhadas,Horas trabajadas
 IRC,IRC (PT)
@@ -108,63 +225,146 @@ IVA,IVA
 Imposto sobre o lucro da margem,Impuesto sobre el beneficio del margen
 Impostos,Impuestos
 Impostos e contribuições,Impuestos y cotizaciones
+Imprimir PDF,Imprimir PDF
 Impuesto de Sociedades,Impuesto de Sociedades
 Iniciar,Iniciar
+Início,Inicio
 Juntar linha,Añadir fila
 Juntar tempo,Añadir tiempo
 Já há um cronómetro a correr ({0}). Pare-o primeiro.,Ya hay un cronómetro en marcha ({0}). Párelo primero.
+Lançar o crédito das {0} horas do pack?,¿Registrar el crédito de las {0} horas del bono?
+Limpar,Limpiar
 Língua,Idioma
 Líquido por mês,Neto al mes
 Mais de 75 % de tempo faturável é raro. Confirme se é realista.,Más del 75 % de tiempo facturable es raro. Confirme que es realista.
+Manual,Manual
+Marca,Marca
+"Marca, preço por omissão, arredondamento e regras dos clientes","Marca, precio por defecto, redondeo y reglas de los clientes"
 Margem (%),Margen (%)
 Margem e packs,Margen y bonos
 Marketing,Marketing
+Menu,Menú
 Meses por ano,Meses por año
 Moeda,Moneda
+Mês,Mes
 Mínimo (min),Mínimo (min)
+N.º da fatura,N.º de factura
+NIF,NIF
 NIF / NIF-IVA,NIF / NIF-IVA
+Nenhum cronómetro a correr.,Ningún cronómetro en marcha.
+Nenhum.,Ninguno.
 Nome,Nombre
 Nome comercial,Nombre comercial
 Notas,Notas
 Novo acordo,Nuevo acuerdo
 Novo cliente,Nuevo cliente
+Novo cronómetro,Nuevo cronómetro
 Novo estudo,Nuevo estudio
+Novo orçamento no ERP,Nuevo presupuesto en el ERP
+Novo pack,Nuevo bono
 Novo registo,Nuevo registro
+Não há extratos para aprovar.,No hay extractos que aprobar.
+O Orbit ainda não tem empresa configurada.,Orbit todavía no tiene empresa configurada.
+O Orbit está suspenso: o Tempo fica só de leitura até regularizar.,Orbit está suspendido: Tempo queda en solo lectura hasta regularizar.
+O Stratechna Tempo precisa de {0} no seu Orbit.,Stratechna Tempo necesita {0} en su Orbit.
+O Tempo precisa de {0} no seu Orbit.,Tempo necesita {0} en su Orbit.
+O acordo não tem as horas do pack.,El acuerdo no tiene las horas del bono.
+O acordo «{0}» não está ativo.,El acuerdo «{0}» no está activo.
+O contacto não está ligado a um cliente.,El contacto no está vinculado a un cliente.
+O contacto não tem um email válido.,El contacto no tiene un correo válido.
+O cronómetro tem menos de um minuto. Descarte-o ou continue.,El cronómetro tiene menos de un minuto. Descártelo o continúe.
+O desconto vai de 0 a 99 %.,El descuento va del 0 al 99 %.
 O estudo ainda não tem preço recomendado.,El estudio todavía no tiene precio recomendado.
 O estudo não fecha: {0},El estudio no cuadra: {0}
+"O extrato fica em rascunho: confira e envie. Depois de enviado, as linhas só se corrigem por ajuste.","El extracto queda en borrador: revíselo y envíelo. Una vez enviado, las líneas solo se corrigen con un ajuste."
+O fim do período é anterior ao início.,El fin del periodo es anterior al inicio.
 O fim é anterior ao início.,El fin es anterior al inicio.
+O pack tem de ter horas.,El bono debe tener horas.
 O preço/hora não pode ser negativo.,El precio/hora no puede ser negativo.
 O que está a fazer?,¿Qué está haciendo?
 O que fez?,¿Qué ha hecho?
 "O que quer que lhe fique no bolso, depois de impostos e contribuições.","Lo que quiere que le quede en el bolsillo, después de impuestos y cotizaciones."
 O que vai fazer? (opcional),¿Qué va a hacer? (opcional)
+O seu pack ativo e os packs disponíveis para renovar,Su bono activo y los bonos disponibles para renovar
+"O seu tempo, os seus clientes e o que está pendente","Su tiempo, sus clientes y lo que está pendiente"
 Ocorreu um erro. Tente novamente.,Se ha producido un error. Inténtelo de nuevo.
+Oferecidas,De cortesía
 "Oferta (conta como feito, não se cobra)","Cortesía (cuenta como hecho, no se cobra)"
 Ofertas,Cortesías
+"Olá, {0}","Hola, {0}"
+Origem,Origen
+Orçamento,Presupuesto
+Orçamento aceite no portal do cliente por {0}.,Presupuesto aceptado en el portal del cliente por {0}.
+Orçamento aceite.,Presupuesto aceptado.
+Orçamentos,Presupuestos
+Orçamentos e faturas,Presupuestos y facturas
+"Os clientes do Orbit, com os acordos e o saldo de horas","Los clientes de Orbit, con los acuerdos y el saldo de horas"
+"Os clientes entram na área de cliente deste Orbit, sem conta Stratechna, e não contam como utilizadores.","Los clientes entran en el área de cliente de este Orbit, sin cuenta Stratechna, y no cuentan como usuarios."
+"Os extratos de cada período: aprove, ou conteste uma linha",Los extractos de cada periodo: apruebe o impugne una línea
+Os seus pedidos de apoio e o tempo gasto em cada um,Sus solicitudes de soporte y el tiempo dedicado a cada una
 Outro país — taxa média,Otro país — tipo medio
 Outros,Otros
 Pack,Bono
+Pack de horas,Bono de horas
 Pack de horas (em breve),Bono de horas (próximamente)
+Pack de {0} h,Bono de {0} h
+"Pack de {0} horas, válido {1} meses.","Bono de {0} horas, válido {1} meses."
+Pack guardado.,Bono guardado.
+Pack pago — lançar horas,Bono pagado — registrar horas
 Packs,Bonos
 Packs a testar,Bonos a probar
+Packs de horas,Bonos de horas
+"Packs de horas com desconto, para vender nos orçamentos","Bonos de horas con descuento, para vender en los presupuestos"
+Packs disponíveis,Bonos disponibles
+Packs e avenças a acabar,Bonos e igualas a punto de acabar
+Packs e preços,Bonos y precios
+Palavra-passe,Contraseña
 Para cima,Hacia arriba
 "Para começar, crie um cliente e um acordo (como cobra o tempo a esse cliente).","Para empezar, cree un cliente y un acuerdo (cómo le cobra el tiempo a ese cliente)."
 Para o portal de consulta e os extratos.,Para el portal de consulta y los extractos.
+Para o portal do cliente e os extratos.,Para el portal del cliente y los extractos.
 Para reinvestir e aguentar meses fracos.,Para reinvertir y aguantar los meses flojos.
+"Para renovar, peça-nos um orçamento: aparece em Documentos para aceitar.","Para renovar, pídanos un presupuesto: aparece en Documentos para aceptarlo."
 Parar e guardar,Parar y guardar
 Pare o cronómetro antes de editar o registo.,Pare el cronómetro antes de editar el registro.
+Pausa,Pausa
+Pedido (Desk),Solicitud (Desk)
+Pedidos,Solicitudes
 Periodicidade,Periodicidad
+Período,Periodo
+Período até,Periodo hasta
+Pessoa de contacto,Persona de contacto
+Por faturar,Pendiente de facturar
 Por faturar (todos os meses),Pendiente de facturar (todos los meses)
 Portugal — sociedade (unipessoal ou por quotas),Portugal — sociedad (unipersonal o limitada)
 Portugal — trabalhador independente (regime simplificado),Portugal — trabajador independiente (régimen simplificado)
 "Preencha as despesas mensais da sua estrutura, o rendimento que quer receber e o tempo que consegue faturar. A app diz o preço/hora mínimo e o recomendado.","Rellene los gastos mensuales de su estructura, los ingresos que quiere recibir y el tiempo que puede facturar. La app le indica el precio/hora mínimo y el recomendado."
+Prefiro entrar com palavra-passe,Prefiero entrar con contraseña
+Prefiro receber uma ligação por email,Prefiero recibir un enlace por correo
+Preço,Precio
+Preço do pack,Precio del bono
+Preço e arredondamento por omissão,Precio y redondeo por defecto
 Preço fixo,Precio cerrado
 Preço fixo (só para medir a rentabilidade),Precio cerrado (solo para medir la rentabilidad)
 Preço mínimo,Precio mínimo
 Preço recomendado,Precio recomendado
 Preço/hora,Precio/hora
+Preço/hora de referência: {0}. A hora e os packs entram nos orçamentos do ERP como artigos.,Precio/hora de referencia: {0}. La hora y los bonos entran en los presupuestos del ERP como artículos.
+Preço/hora efetivo,Precio/hora efectivo
 Preço/hora por omissão,Precio/hora por defecto
+Preços,Precios
+Procurar cliente,Buscar cliente
+Procurar cliente…,Buscar cliente…
+Progresso,Progreso
+Projeto,Proyecto
+Rascunho,Borrador
+Recolher o menu,Recoger el menú
+Regime,Régimen
 Regime fiscal,Régimen fiscal
+Registar,Registrar
+Registar fatura,Registrar factura
+Registar horas,Registrar horas
+Registo anulado.,Registro anulado.
 Registo apagado.,Registro eliminado.
 Registo guardado.,Registro guardado.
 Registo manual,Registro manual
@@ -175,23 +375,47 @@ Resultado,Resultado
 Resumo,Resumen
 Resumo do mês,Resumen del mes
 Retirar,Quitar
+Retirar horas (ajuste negativo),Quitar horas (ajuste negativo)
+Retomar,Reanudar
+Saldo,Saldo
+Saldo de horas negativo,Saldo de horas negativo
+Saldo de horas reduzido,Saldo de horas bajo
+Saldo negativo — {0} em débito.,Saldo negativo — {0} en débito.
+Saldo reduzido — menos de {0} horas disponíveis.,Saldo bajo — menos de {0} horas disponibles.
+Saldo total,Saldo total
+"Se este email tiver acesso, enviámos uma ligação de entrada. Veja a sua caixa de correio.","Si este correo tiene acceso, hemos enviado un enlace de acceso. Revise su buzón."
 Secções,Secciones
 Segurança Social,Seguridad Social (PT)
 Seguro de responsabilidade civil,Seguro de responsabilidad civil
 Seguros,Seguros
 Sem acesso à app Tempo.,Sin acceso a la app Tempo.
+Sem acordos com extrato.,Sin acuerdos con extracto.
 Sem acordos: crie um para poder registar tempo.,Sin acuerdos: cree uno para poder registrar tiempo.
+Sem clientes.,Sin clientes.
+"Sem contactos. Crie-os no CRM ou no ERP, ligados a este cliente.","Sin contactos. Créelos en el CRM o en el ERP, vinculados a este cliente."
+Sem extratos.,Sin extractos.
+Sem faturas.,Sin facturas.
 Sem horas faturáveis não há preço possível.,Sin horas facturables no hay precio posible.
+Sem orçamentos.,Sin presupuestos.
+Sem pedidos com tempo registado.,Sin solicitudes con tiempo registrado.
+Sem projetos.,Sin proyectos.
 Sem registos neste mês.,Sin registros este mes.
+Sem registos no período selecionado.,Sin registros en el periodo seleccionado.
 Sem registos.,Sin registros.
 Semana,Semana
 Semana anterior,Semana anterior
 Semana seguinte,Semana siguiente
+Serviço à hora,Servicio por horas
+Sistema,Sistema
 Software,Software
 Software e assinaturas,Software y suscripciones
+Subscrever no portal Stratechna,Suscribirse en el portal Stratechna
 Só se descarta um cronómetro a correr.,Solo se puede descartar un cronómetro en marcha.
+Só se fatura um extrato aprovado.,Solo se factura un extracto aprobado.
+Só um acordo do tipo Pack recebe o crédito do pack.,Solo un acuerdo de tipo Bono recibe el crédito del bono.
 TSU da empresa,Seguridad Social de la empresa (PT)
 TSU do gerente,Seguridad Social del gerente (PT)
+Tarefa (Projects),Tarea (Projects)
 Taxa da Segurança Social,Tipo de la Seguridad Social (PT)
 Taxa efetiva/hora,Tarifa efectiva/hora
 Taxa média de IRPF,Tipo medio de IRPF
@@ -201,43 +425,79 @@ Telefone,Teléfono
 Telemóvel e internet,Móvil e internet
 Tempo,Tempo
 Tempo faturável (%),Tiempo facturable (%)
+Tempo registado,Tiempo registrado
+Terminar sessão,Cerrar sesión
 Tipo,Tipo
+Tipo de movimento inválido.,Tipo de movimiento no válido.
+Todos,Todos
 Total,Total
 Trabalhadas,Trabajadas
+Trabalho,Trabajo
+Trabalho (consumo),Trabajo (consumo)
+Trabalhos,Trabajos
 "Tudo o que paga para poder trabalhar, mesmo sem clientes. Compras grandes (computador, carro) entram divididas pelos anos de uso.","Todo lo que paga para poder trabajar, incluso sin clientes. Las compras grandes (ordenador, coche) se reparten por los años de uso."
 Título,Título
 Um registo não pode passar de 24 horas.,Un registro no puede superar las 24 horas.
+Validade,Validez
+Validade (meses),Validez (meses)
+Validade do pack,Validez del bono
 Valor,Importe
+Valor mensal,Importe mensual
 Valores de referência do ano. Confirme-os com o seu contabilista ou gestoria; pode ajustá-los ao seu caso.,Valores de referencia del año. Confírmelos con su gestoría; puede ajustarlos a su caso.
 Vazio = o das Definições.,Vacío = el de los Ajustes.
+Vazio = {0} (Definições).,Vacío = {0} (Ajustes).
 Vazio = {0} (das Definições / estudo do preço).,Vacío = {0} (de los Ajustes / estudio del precio).
 Vem do estudo em uso ({0}).,Viene del estudio en uso ({0}).
 Voltar ao Orbit,Volver a Orbit
+Válido até,Válido hasta
+Válido até {0},Válido hasta {0}
 abaixo disto não chega ao rendimento,por debajo no llega a los ingresos
 abaixo do preço de referência ({0}),por debajo del precio de referencia ({0})
 abaixo do preço mínimo,por debajo del precio mínimo
 acima do preço mínimo,por encima del precio mínimo
 ao minuto,al minuto
+até,hasta
+até {0},hasta {0}
 cobra {0},cobra {0}
+com acesso,con acceso
 "compra, em anos","compra, en años"
 das Definições,de los Ajustes
 em uso,en uso
 ex.: Consultoria de exportação,ej.: Consultoría de exportación
+ex.: Pack 20 horas,ej.: Bono 20 horas
+ex: 10.8 ou 1H30m,ej: 10.8 o 1H30m
 h com,h con
 inativo,inactivo
 mínimo {0},mínimo {0}
 não faturável,no facturable
 não se cobra à hora,no se cobra por horas
 oferta,cortesía
+oferta — não gasta saldo,cortesía — no gasta saldo
+pedido #{0},solicitud #{0}
 por ano,al año
 por mês,al mes
 por validar,por validar
+preço fixo,precio cerrado
 referência {0},referencia {0}
 sem IVA,sin IVA
+sem acordo,sin acuerdo
 só para manter a atividade aberta,solo para mantener la actividad abierta
+tempo real {0},tiempo real {0}
+trabalho à hora fora de extratos,trabajo por horas fuera de extractos
+tácita,tácita
 validado,validado
+{0} a {1},{0} a {1}
 {0} com IVA,{0} con IVA
+{0} contratadas · {1} gastas,{0} contratadas · {1} gastadas
 {0} h com {1} %,{0} h con {1} %
+{0} h · {1} gastas,{0} h · {1} gastadas
+{0} h × {1} = {2},{0} h × {1} = {2}
 {0} h/semana,{0} h/semana
+{0} já é utilizador do Orbit: não pode ser também cliente.,{0} ya es usuario de Orbit: no puede ser también cliente.
+{0} meses,{0} meses
+{0} por faturar,{0} pendiente de facturar
+{0} registos no período,{0} registros en el periodo
 À hora,Por horas
+À venda,A la venta
+Área de cliente,Área de cliente
 — Escolha o cliente e o acordo —,— Elija el cliente y el acuerdo —

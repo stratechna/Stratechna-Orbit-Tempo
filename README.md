@@ -1,4 +1,4 @@
-# Stratechna Orbit — Tempo
+# Stratechna Tempo
 
 App Frappe para freelancers: registo de tempo (cronómetro, manual, grelha semanal),
 acordos com cada cliente (à hora, preço fixo; packs e avenças na F2) e **estudo do

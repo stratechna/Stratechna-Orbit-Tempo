@@ -37,6 +37,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
+      - name: Interface compilada é a do repositório
+        # O pacote vai no repositório (a imagem do Orbit não compila esta app); aqui confirma-se
+        # que é exactamente o que sai do código-fonte.
+        working-directory: app/frontend
+        run: |
+          npm ci --no-audit --no-fund
+          npm run build
+          git -C .. diff --stat --exit-code -- orbit_tempo/public/frontend \
+            || { echo "ERRO: o pacote em orbit_tempo/public/frontend não corresponde ao código. Correr npm run build e juntar."; exit 1; }
       - name: Motor (sem bench)
         working-directory: app
         run: python -m unittest orbit_tempo.testes.test_motor
@@ -61,6 +70,27 @@ jobs:
         working-directory: bench
         # o before_tests do ERPNext prepara a empresa, os grupos e as listas de preços
         run: bench --site teste.local run-tests --module orbit_tempo.testes.test_integracao
+      - name: Ponta a ponta por HTTP (/tempo e /cliente)
+        working-directory: bench
+        run: |
+          bench use teste.local
+          bench serve --port 8000 > serve.log 2>&1 &
+          for i in $(seq 1 40); do curl -sf -o /dev/null localhost:8000/api/method/ping && break; sleep 2; done
+          H="Host: teste.local"
+          # sem sessão: /tempo manda entrar; /cliente mostra a entrada do cliente
+          test "$(curl -s -o /dev/null -w '%{http_code}' -H "$H" localhost:8000/tempo)" = "302"
+          curl -sf -H "$H" localhost:8000/cliente | grep -q '"modo": "entrar"'
+          curl -sf -c jar -H "$H" -X POST localhost:8000/api/method/login -d usr=Administrator -d pwd=admin >/dev/null
+          curl -sf -b jar -H "$H" localhost:8000/tempo -o tempo.html
+          grep -q '"modo": "admin"' tempo.html && grep -q "/assets/orbit_tempo/frontend/tempo.js" tempo.html
+          curl -sf -b jar -H "$H" localhost:8000/tempo/clientes | grep -q "TEMPO_BOOT"
+          curl -sf -b jar -H "$H" localhost:8000/api/method/orbit_tempo.api.arranque | grep -q '"regimes"'
+          TOKEN=$(python -c "import re,json;h=open('tempo.html').read();print(json.loads(re.search(r'TEMPO_BOOT = (\{.*\});</script>',h).group(1))['csrf_token'])")
+          curl -sf -b jar -H "$H" -H "X-Frappe-CSRF-Token: $TOKEN" -H "Content-Type: application/json" \
+            -X POST localhost:8000/api/method/orbit_tempo.api.novo_cliente -d '{"dados": {"nome": "Cliente HTTP"}}' | grep -q "Cliente HTTP"
+          test "$(curl -s -o /dev/null -w '%{http_code}' -b jar -H "$H" -H "Content-Type: application/json" -X POST \
+            localhost:8000/api/method/orbit_tempo.api.novo_cliente -d '{"dados": {"nome": "X"}}')" != "200"
+          echo "ponta a ponta: ok"
       - name: Traduções (sem bench)
         if: always()
         working-directory: app

@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-	<meta name="theme-color" content="#22303d">
+	<meta name="theme-color" content="#111314">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<title>Tempo</title>
+	<title>Stratechna Tempo</title>
 	<link rel="icon" href="/assets/orbit_tempo/icons/tempo.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="/assets/orbit_tempo/icons/tempo.svg">
 	<link rel="manifest" href="/assets/orbit_tempo/manifest.webmanifest">
-	<link rel="stylesheet" href="/assets/orbit_tempo/css/tempo.css?v={{ versao }}">
+	<link rel="stylesheet" href="/assets/orbit_tempo/frontend/tempo.css?v={{ versao }}">
 </head>
 <body>
-	<div id="tempo" class="tp-a-carregar" aria-busy="true"></div>
+	<div id="tempo"></div>
 	<script>window.TEMPO_BOOT = {{ boot }};</script>
-	<script src="/assets/orbit_tempo/js/tempo.js?v={{ versao }}"></script>
+	<script type="module" src="/assets/orbit_tempo/frontend/tempo.js?v={{ versao }}"></script>
 </body>
 </html>
