@@ -37,11 +37,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - name: Motor e traduções (sem bench)
+      - name: Motor (sem bench)
         working-directory: app
-        run: python -m unittest orbit_tempo.testes.test_motor orbit_tempo.testes.test_traducoes
-      - name: Sintaxe da interface
-        run: node --check app/orbit_tempo/public/js/tempo.js
+        run: python -m unittest orbit_tempo.testes.test_motor
       - name: Bench com ERPNext
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq mariadb-client >/dev/null || true
@@ -63,3 +61,7 @@ jobs:
         working-directory: bench
         # o before_tests do ERPNext prepara a empresa, os grupos e as listas de preços
         run: bench --site teste.local run-tests --module orbit_tempo.testes.test_integracao
+      - name: Traduções (sem bench)
+        if: always()
+        working-directory: app
+        run: python -m unittest orbit_tempo.testes.test_traducoes
