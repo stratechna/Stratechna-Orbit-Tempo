@@ -1,7 +1,7 @@
 app_name = "orbit_tempo"
-app_title = "Tempo"
+app_title = "Stratechna Tempo"
 app_publisher = "Stratechna"
-app_description = "Registo de horas, packs e preço/hora — Stratechna Orbit"
+app_description = "Stratechna Tempo — registo de horas, packs e preço/hora (no Stratechna Orbit)"
 app_email = "it@stratechna.pt"
 app_license = "agpl-3.0"
 
@@ -46,6 +46,9 @@ doc_events = {
 scheduler_events = {
     "daily": ["orbit_tempo.livro.expirar_packs", "orbit_tempo.extratos.aprovar_tacitos"],
 }
+
+# Testes (só no GitHub): prepara o ERPNext antes de correr.
+before_tests = "orbit_tempo.testes.preparar.antes_dos_testes"
 
 after_install = ["orbit_tempo.instalar.garantir"]
 after_migrate = ["orbit_tempo.instalar.garantir"]
