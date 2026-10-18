@@ -12,24 +12,30 @@
   "cliente",
   "acordo",
   "data",
+  "hora",
   "tipo",
   "c1",
   "horas",
+  "minutos_reais",
   "valor",
   "faturavel",
   "oferta",
   "s2",
-  "registo",
-  "extrato",
+  "timesheet",
+  "timesheet_linha",
+  "bilhete",
+  "tarefa",
+  "utilizador",
   "c2",
-  "descricao"
+  "descricao",
+  "extrato"
  ],
  "fields": [
   {
    "fieldname": "cliente",
    "fieldtype": "Link",
    "label": "Cliente",
-   "options": "Tempo Cliente",
+   "options": "Customer",
    "reqd": 1,
    "in_list_view": 1,
    "in_standard_filter": 1,
@@ -52,18 +58,24 @@
    "idx": 3
   },
   {
+   "fieldname": "hora",
+   "fieldtype": "Time",
+   "label": "Hora",
+   "idx": 4
+  },
+  {
    "fieldname": "tipo",
    "fieldtype": "Select",
    "label": "Tipo",
    "options": "consumo\ncredito\nexpiracao\najuste",
    "reqd": 1,
    "in_list_view": 1,
-   "idx": 4
+   "idx": 5
   },
   {
    "fieldname": "c1",
    "fieldtype": "Column Break",
-   "idx": 5
+   "idx": 6
   },
   {
    "fieldname": "horas",
@@ -71,57 +83,95 @@
    "label": "Horas",
    "in_list_view": 1,
    "description": "Créditos positivos, consumos e expirações negativos.",
-   "idx": 6
+   "idx": 7
+  },
+  {
+   "fieldname": "minutos_reais",
+   "fieldtype": "Float",
+   "label": "Minutos reais",
+   "idx": 8
   },
   {
    "fieldname": "valor",
    "fieldtype": "Currency",
    "label": "Valor",
-   "idx": 7
+   "idx": 9
   },
   {
    "fieldname": "faturavel",
    "fieldtype": "Check",
    "label": "Faturável",
    "default": "1",
-   "idx": 8
+   "idx": 10
   },
   {
    "fieldname": "oferta",
    "fieldtype": "Check",
    "label": "Oferta",
-   "idx": 9
+   "idx": 11
   },
   {
    "fieldname": "s2",
    "fieldtype": "Section Break",
-   "idx": 10
-  },
-  {
-   "fieldname": "registo",
-   "fieldtype": "Data",
-   "label": "Registo",
-   "read_only": 1,
-   "idx": 11
-  },
-  {
-   "fieldname": "extrato",
-   "fieldtype": "Data",
-   "label": "Extrato",
-   "read_only": 1,
-   "description": "Preenchido quando entra num extrato (F3).",
+   "label": "Origem",
    "idx": 12
+  },
+  {
+   "fieldname": "timesheet",
+   "fieldtype": "Link",
+   "label": "Folha de horas",
+   "options": "Timesheet",
+   "read_only": 1,
+   "idx": 13
+  },
+  {
+   "fieldname": "timesheet_linha",
+   "fieldtype": "Data",
+   "label": "Linha da folha",
+   "read_only": 1,
+   "unique": 1,
+   "idx": 14
+  },
+  {
+   "fieldname": "bilhete",
+   "fieldtype": "Data",
+   "label": "Bilhete",
+   "read_only": 1,
+   "idx": 15
+  },
+  {
+   "fieldname": "tarefa",
+   "fieldtype": "Data",
+   "label": "Tarefa",
+   "read_only": 1,
+   "idx": 16
+  },
+  {
+   "fieldname": "utilizador",
+   "fieldtype": "Link",
+   "label": "Quem registou",
+   "options": "User",
+   "read_only": 1,
+   "idx": 17
   },
   {
    "fieldname": "c2",
    "fieldtype": "Column Break",
-   "idx": 13
+   "idx": 18
   },
   {
    "fieldname": "descricao",
    "fieldtype": "Small Text",
    "label": "Descrição",
-   "idx": 14
+   "idx": 19
+  },
+  {
+   "fieldname": "extrato",
+   "fieldtype": "Link",
+   "label": "Extrato",
+   "options": "Tempo Extrato",
+   "read_only": 1,
+   "idx": 20
   }
  ],
  "permissions": [
@@ -146,6 +196,6 @@
  "sort_order": "DESC",
  "states": [],
  "autoname": "format:MOV-{######}",
- "description": "O livro de horas: créditos (packs, avenças), consumos, expirações e ajustes. Escrito pela app.",
+ "description": "O livro de horas do cliente: créditos (packs, avenças), consumos (folhas de horas), expirações e ajustes. Escrito pela app.",
  "naming_rule": "Expression"
 }

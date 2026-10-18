@@ -22,7 +22,13 @@
   "minimo_minutos",
   "c2",
   "preco_hora",
-  "estudo_ativo"
+  "estudo_ativo",
+  "s_cli",
+  "alerta_saldo_horas",
+  "dias_aprovacao_tacita",
+  "c3",
+  "item_hora",
+  "aviso_validade_dias"
  ],
  "fields": [
   {
@@ -123,6 +129,46 @@
    "options": "Tempo Estudo Preco",
    "read_only": 1,
    "idx": 14
+  },
+  {
+   "fieldname": "s_cli",
+   "fieldtype": "Section Break",
+   "label": "Clientes e extratos",
+   "idx": 15
+  },
+  {
+   "fieldname": "alerta_saldo_horas",
+   "fieldtype": "Float",
+   "label": "Avisar quando o saldo ficar abaixo de (horas)",
+   "default": "2",
+   "idx": 16
+  },
+  {
+   "fieldname": "dias_aprovacao_tacita",
+   "fieldtype": "Int",
+   "label": "Aprovação tácita do extrato (dias)",
+   "default": "7",
+   "idx": 17
+  },
+  {
+   "fieldname": "c3",
+   "fieldtype": "Column Break",
+   "idx": 18
+  },
+  {
+   "fieldname": "item_hora",
+   "fieldtype": "Link",
+   "label": "Artigo «Hora» do ERP",
+   "options": "Item",
+   "read_only": 1,
+   "idx": 19
+  },
+  {
+   "fieldname": "aviso_validade_dias",
+   "fieldtype": "Int",
+   "label": "Avisar antes do fim do pack (dias)",
+   "default": "15",
+   "idx": 20
   }
  ],
  "permissions": [

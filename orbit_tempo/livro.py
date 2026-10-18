@@ -1,23 +1,30 @@
-"""O livro de horas do freelancer (`Tempo Movimento`).
+"""O livro de horas do cliente (`Tempo Movimento`), alimentado pela Folha de horas do Orbit.
 
-Mesma semântica do `entrada_tempo` do portal da Stratechna, que está em uso há
-meses com clientes reais:
+Versão 2 (decisão T2, 18-10-2026): a **Folha de horas (Timesheet) do ERPNext é a fonte do
+trabalho** — é onde o Desk («Registar tempo» no bilhete), o Projects, os cronómetros e a
+Entrada de horas escrevem. É o mesmo desenho da Stratechna desde 17-10 (Timesheet do
+Orbit → livro do portal). Uma folha só para o Tempo obrigaria a anotar duas vezes.
 
-* `credito`   horas que o cliente comprou (pack) ou a que tem direito (avença) — positivas;
-* `consumo`   trabalho feito — negativas;
-* `expiracao` horas de um pack que caducaram — negativas;
-* `ajuste`    correcção manual, com descrição.
+* antes de validar a folha: o acordo dá o cliente, o arredondamento (`billing_hours`) e o
+  preço (`billing_rate`, só se a linha ainda não tiver — o preço fica gravado);
+* ao submeter: uma linha da folha = um movimento de **consumo** (chave = a linha);
+* ao cancelar: os consumos dessa folha saem — excepto se já estiverem num extrato
+  enviado, que só se corrige por ajuste.
 
-O freelancer nunca escreve no livro directamente: anota `Tempo Registo` e o livro
-segue-o. Um registo = no máximo um movimento de consumo. Assim o tempo que vier
-do Desk ou do ERP (F5) entra pelo mesmo caminho sem se anotar duas vezes.
+Semântica do livro (a do `entrada_tempo` do portal): `credito` (pack, avença) positivo;
+`consumo` e `expiracao` negativos; `ajuste` com sinal; as ofertas aparecem mas não gastam
+saldo. O trabalho de um acordo a preço fixo não entra no livro (conta só para a
+rentabilidade, lida directamente das folhas).
 """
 from __future__ import annotations
 
 import frappe
 from frappe import _
+from frappe.utils import add_days, flt, get_datetime, getdate, now_datetime, time_diff_in_seconds, today
 
 from orbit_tempo import calculo
+
+ESTADOS_TRANCADOS = ("Enviado", "Aprovado", "Contestado", "Faturado")
 
 
 def definicoes():
@@ -47,105 +54,201 @@ def regras_do_acordo(acordo) -> dict:
     }
 
 
-def cobra_valor(registo, regras) -> bool:
-    return bool(registo.faturavel) and not registo.oferta and regras["tipo"] != "Preço fixo"
+def acordo_do_cliente(cliente: str | None) -> str | None:
+    """O acordo ativo de um cliente, quando há só um (o «Registar tempo» do Desk não sabe de acordos)."""
+    if not cliente:
+        return None
+    ativos = frappe.get_all("Tempo Acordo", filters={"cliente": cliente, "ativo": 1}, pluck="name", limit=2)
+    return ativos[0] if len(ativos) == 1 else None
 
 
-def bloqueado(registo) -> bool:
-    """Um registo que já entrou num extrato enviado não muda em silêncio."""
-    if not registo.get("movimento"):
-        return False
-    return bool(frappe.db.get_value("Tempo Movimento", registo.movimento, "extrato"))
+# ── Folha de horas ───────────────────────────────────────────────────────────
 
-
-def sincronizar(registo) -> None:
-    """Põe o movimento de consumo de acordo com o registo (cria, actualiza ou apaga)."""
-    nome = registo.get("movimento")
-    if registo.em_curso or not registo.minutos_faturados:
-        if nome and frappe.db.exists("Tempo Movimento", nome):
-            frappe.delete_doc("Tempo Movimento", nome, ignore_permissions=True, force=True)
-            registo.db_set("movimento", None, update_modified=False)
+def antes_de_validar(doc, method=None):
+    """Timesheet.before_validate: o acordo põe cliente, horas a cobrar e preço."""
+    if not doc.get("tempo_acordo"):
+        doc.tempo_acordo = acordo_do_cliente(doc.get("customer"))
+    if not doc.get("tempo_acordo"):
         return
-
-    valores = {
-        "cliente": registo.cliente,
-        "acordo": registo.acordo,
-        "data": registo.data,
-        "tipo": "consumo",
-        "horas": -calculo.horas(registo.minutos_faturados),
-        "valor": registo.valor or 0,
-        "faturavel": registo.faturavel,
-        "oferta": registo.oferta,
-        "registo": registo.name,
-        "descricao": registo.descricao,
-    }
-    if nome and frappe.db.exists("Tempo Movimento", nome):
-        mov = frappe.get_doc("Tempo Movimento", nome)
-        mov.update(valores)
-        mov.save(ignore_permissions=True)
-    else:
-        mov = frappe.get_doc({"doctype": "Tempo Movimento", **valores})
-        mov.insert(ignore_permissions=True)
-        registo.db_set("movimento", mov.name, update_modified=False)
+    acordo = frappe.get_cached_doc("Tempo Acordo", doc.tempo_acordo)
+    regras = regras_do_acordo(acordo)
+    doc.customer = acordo.cliente
+    for linha in doc.get("time_logs") or []:
+        if linha.from_time and linha.to_time:
+            linha.hours = max(time_diff_in_seconds(get_datetime(linha.to_time), get_datetime(linha.from_time)) / 3600, 0)
+        if not linha.project and acordo.projeto:
+            linha.project = acordo.projeto
+        if regras["tipo"] == "Preço fixo":
+            linha.is_billable = 0
+        if not linha.is_billable:
+            linha.billing_hours = 0
+            continue
+        minutos = calculo.minutos_faturados(flt(linha.hours) * 60, regras["bloco"], regras["modo"], regras["minimo"])
+        linha.billing_hours = minutos / 60
+        if not flt(linha.billing_rate):
+            # Num pack ou avença as horas já estão pagas: a linha não leva preço (não se fatura duas vezes).
+            linha.billing_rate = 0 if regras["tipo"] in ("Pack", "Avença") else regras["preco_hora"]
 
 
-def apagar_movimento(registo) -> None:
-    if bloqueado(registo):
-        frappe.throw(_("Este registo já está num extrato e não pode ser apagado."))
-    if registo.get("movimento") and frappe.db.exists("Tempo Movimento", registo.movimento):
-        frappe.delete_doc("Tempo Movimento", registo.movimento, ignore_permissions=True, force=True)
+def _linha_trancada(nome_mov: str) -> bool:
+    extrato = frappe.db.get_value("Tempo Movimento", nome_mov, "extrato")
+    return bool(extrato) and frappe.db.get_value("Tempo Extrato", extrato, "estado") in ESTADOS_TRANCADOS
 
 
-def resumo(desde, ate) -> list[dict]:
-    """Por acordo, no período: horas reais, horas a cobrar, ofertas e valor por faturar."""
-    linhas = frappe.db.sql(
-        """
-        select r.acordo, a.titulo, a.tipo, a.cor, r.cliente, c.nome_cliente,
-               sum(r.duracao_minutos) as minutos_reais,
-               sum(case when r.faturavel = 1 and r.oferta = 0 then r.minutos_faturados else 0 end) as minutos_cobrar,
-               sum(case when r.oferta = 1 then r.minutos_faturados else 0 end) as minutos_oferta,
-               sum(r.valor) as valor,
-               count(*) as registos
-        from `tabTempo Registo` r
-        join `tabTempo Acordo` a on a.name = r.acordo
-        join `tabTempo Cliente` c on c.name = r.cliente
-        where r.em_curso = 0 and r.data between %(desde)s and %(ate)s
-        group by r.acordo, a.titulo, a.tipo, a.cor, r.cliente, c.nome_cliente
-        order by c.nome_cliente, a.titulo
-        """,
-        {"desde": desde, "ate": ate},
-        as_dict=True,
-    )
-    for l in linhas:
-        for k in ("minutos_reais", "minutos_cobrar", "minutos_oferta", "valor"):
-            l[k] = float(l[k] or 0)
-    return linhas
+def ao_submeter(doc, method=None):
+    """Timesheet.on_submit: cada linha passa a um consumo no livro do cliente."""
+    if not doc.get("tempo_acordo"):
+        return
+    acordo = frappe.get_cached_doc("Tempo Acordo", doc.tempo_acordo)
+    if acordo.tipo == "Preço fixo":
+        return
+    regras = regras_do_acordo(acordo)
+    for linha in doc.get("time_logs") or []:
+        reais = flt(linha.hours) * 60
+        if linha.is_billable:
+            minutos = flt(linha.billing_hours) * 60
+        else:
+            # oferta: mostra-se arredondada como as outras, mas não gasta saldo
+            minutos = calculo.minutos_faturados(reais, regras["bloco"], regras["modo"], regras["minimo"])
+        inicio = get_datetime(linha.from_time) if linha.from_time else now_datetime()
+        valores = {
+            "cliente": acordo.cliente, "acordo": acordo.name, "tipo": "consumo",
+            "data": inicio.date(), "hora": inicio.time().replace(microsecond=0),
+            "horas": -round(minutos / 60, 4), "minutos_reais": round(reais, 2),
+            "valor": flt(linha.billing_amount) if linha.is_billable else 0,
+            "faturavel": 1 if linha.is_billable else 0, "oferta": 0 if linha.is_billable else 1,
+            "timesheet": doc.name, "timesheet_linha": linha.name,
+            "bilhete": doc.get("custom_hd_ticket"), "tarefa": linha.task,
+            "utilizador": doc.get("user") or doc.owner,
+            "descricao": linha.description or doc.get("note"),
+        }
+        existente = frappe.db.get_value("Tempo Movimento", {"timesheet_linha": linha.name})
+        if existente:
+            mov = frappe.get_doc("Tempo Movimento", existente)
+            mov.update(valores)
+            mov.save(ignore_permissions=True)
+        else:
+            frappe.get_doc({"doctype": "Tempo Movimento", **valores}).insert(ignore_permissions=True)
+    _avisar_saldo(acordo, sum(flt(l.billing_hours) for l in doc.get("time_logs") or [] if l.is_billable))
 
+
+def _avisar_saldo(acordo, horas_agora):
+    """Aviso ao cliente quando um pack/avença desce abaixo do limiar (ou fica negativo) — só ao atravessar."""
+    if acordo.tipo not in ("Pack", "Avença") or not horas_agora:
+        return
+    from orbit_tempo import avisos
+    limiar = flt(definicoes().alerta_saldo_horas) or 2
+    depois = saldo(acordo.cliente, acordo.name)["disponivel"]
+    antes = depois + horas_agora
+    if (antes >= limiar > depois) or (antes >= 0 > depois):
+        avisos.saldo_baixo(acordo.cliente, acordo.name, depois)
+
+
+def ao_cancelar(doc, method=None):
+    """Timesheet.on_cancel: os consumos dessa folha saem do livro."""
+    movs = frappe.get_all("Tempo Movimento", filters={"timesheet": doc.name}, pluck="name")
+    if any(_linha_trancada(m) for m in movs):
+        frappe.throw(_("Esta folha de horas já está num extrato enviado ao cliente. Corrija com um ajuste."))
+    for m in movs:
+        frappe.delete_doc("Tempo Movimento", m, ignore_permissions=True, force=True)
+
+
+# ── Créditos, ajustes e expirações ───────────────────────────────────────────
+
+def lancar_movimento(cliente, acordo, tipo, horas, descricao, data=None, valor=0.0) -> str:
+    if tipo not in ("credito", "ajuste", "expiracao"):
+        frappe.throw(_("Tipo de movimento inválido."))
+    if tipo == "expiracao":
+        horas = -abs(horas)
+    elif tipo == "credito":
+        horas = abs(horas)
+    mov = frappe.get_doc({"doctype": "Tempo Movimento", "cliente": cliente, "acordo": acordo, "tipo": tipo,
+                          "data": data or today(), "hora": now_datetime().time().replace(microsecond=0),
+                          "horas": horas, "valor": valor, "faturavel": 0, "descricao": descricao,
+                          "utilizador": frappe.session.user})
+    mov.insert(ignore_permissions=True)
+    return mov.name
+
+
+def creditar_pack(acordo_nome: str) -> str | None:
+    """O pack foi pago (decisão T6): as horas entram no livro. Uma vez por acordo."""
+    a = frappe.get_doc("Tempo Acordo", acordo_nome)
+    if a.tipo != "Pack":
+        frappe.throw(_("Só um acordo do tipo Pack recebe o crédito do pack."))
+    if a.credito_lancado:
+        return None
+    if not flt(a.horas_pack):
+        frappe.throw(_("O acordo não tem as horas do pack."))
+    preco = regras_do_acordo(a)["preco_hora"] * (1 - flt(a.desconto_pack) / 100)
+    nome = lancar_movimento(a.cliente, a.name, "credito", flt(a.horas_pack),
+                            _("Pack de {0} h").format(frappe.format(a.horas_pack, {"fieldtype": "Float"}))
+                            + (f" (−{frappe.format(a.desconto_pack, {'fieldtype': 'Float'})} %)" if a.desconto_pack else ""),
+                            valor=round(preco * flt(a.horas_pack), 2))
+    a.db_set("credito_lancado", 1)
+    return nome
+
+
+def expirar_packs():
+    """Diário: o saldo de um pack que passou a validade entra como expiração."""
+    for a in frappe.get_all("Tempo Acordo", filters={"tipo": "Pack", "data_fim": ["<", today()], "credito_lancado": 1},
+                            fields=["name", "cliente", "data_fim"]):
+        if frappe.db.exists("Tempo Movimento", {"acordo": a.name, "tipo": "expiracao"}):
+            continue
+        s = saldo(a.cliente, a.name)
+        if s["disponivel"] > 0:
+            lancar_movimento(a.cliente, a.name, "expiracao", s["disponivel"],
+                             _("Expiração do pack (validade {0})").format(frappe.format(a.data_fim, {"fieldtype": "Date"})),
+                             data=add_days(a.data_fim, 1))
+    frappe.db.commit()
+
+
+# ── Leituras ─────────────────────────────────────────────────────────────────
 
 def saldo(cliente: str, acordo: str | None = None) -> dict:
-    """Saldo do livro: créditos − consumos − expirações (as ofertas não gastam saldo)."""
+    """Créditos − consumos − expirações (as ofertas não gastam saldo), e o valor por faturar."""
     filtros = {"cliente": cliente}
     if acordo:
         filtros["acordo"] = acordo
-    creditos = consumos = expirados = 0.0
-    por_faturar = 0.0
+    creditos = consumos = expirados = oferecidas = por_faturar = 0.0
     for m in frappe.get_all("Tempo Movimento", filters=filtros,
                             fields=["tipo", "horas", "valor", "oferta", "faturavel", "extrato"]):
         if m.tipo == "credito":
             creditos += m.horas
         elif m.tipo == "consumo":
-            if not m.oferta:
+            if m.oferta:
+                oferecidas += -m.horas
+            else:
                 consumos += -m.horas
-            if m.faturavel and not m.oferta and not m.extrato:
-                por_faturar += m.valor or 0
+                if m.faturavel and not m.extrato:
+                    por_faturar += m.valor or 0
         elif m.tipo == "expiracao":
             expirados += -m.horas
         elif m.tipo == "ajuste":
             creditos += m.horas
     return {
-        "creditos": round(creditos, 2),
-        "consumos": round(consumos, 2),
-        "expirados": round(expirados, 2),
-        "disponivel": round(creditos - consumos - expirados, 2),
+        "creditos": round(creditos, 2), "consumos": round(consumos, 2), "expirados": round(expirados, 2),
+        "oferecidas": round(oferecidas, 2), "disponivel": round(creditos - consumos - expirados, 2),
         "por_faturar": round(por_faturar, 2),
     }
+
+
+def movimentos(cliente: str, acordo: str | None = None, desde=None, ate=None) -> list[dict]:
+    """O extrato: movimentos por ordem cronológica, com o saldo acumulado (como o do portal)."""
+    filtros = {"cliente": cliente}
+    if acordo:
+        filtros["acordo"] = acordo
+    linhas = frappe.get_all("Tempo Movimento", filters=filtros,
+                            fields=["name", "data", "hora", "tipo", "horas", "minutos_reais", "valor", "faturavel",
+                                    "oferta", "descricao", "bilhete", "tarefa", "acordo", "extrato", "timesheet",
+                                    "utilizador"],
+                            order_by="data asc, hora asc, creation asc")
+    acumulado = 0.0
+    for l in linhas:
+        if not (l.tipo == "consumo" and l.oferta):
+            acumulado += l.horas
+        l["saldo_acumulado"] = round(acumulado, 4)
+    if desde:
+        linhas = [l for l in linhas if getdate(l.data) >= getdate(desde)]
+    if ate:
+        linhas = [l for l in linhas if getdate(l.data) <= getdate(ate)]
+    return linhas

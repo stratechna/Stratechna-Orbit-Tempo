@@ -1,0 +1,111 @@
+{
+ "doctype": "DocType",
+ "name": "Tempo Cronometro",
+ "module": "Tempo",
+ "custom": 0,
+ "engine": "InnoDB",
+ "modified": "2026-10-19 00:00:00.000000",
+ "creation": "2026-10-19 00:00:00.000000",
+ "owner": "Administrator",
+ "modified_by": "Administrator",
+ "field_order": [
+  "utilizador",
+  "acordo",
+  "inicio",
+  "pausado_em",
+  "segundos_pausa",
+  "c1",
+  "bilhete",
+  "tarefa",
+  "descricao"
+ ],
+ "fields": [
+  {
+   "fieldname": "utilizador",
+   "fieldtype": "Link",
+   "label": "Utilizador",
+   "options": "User",
+   "reqd": 1,
+   "in_list_view": 1,
+   "default": "__user",
+   "idx": 1
+  },
+  {
+   "fieldname": "acordo",
+   "fieldtype": "Link",
+   "label": "Acordo",
+   "options": "Tempo Acordo",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "inicio",
+   "fieldtype": "Datetime",
+   "label": "Início",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "pausado_em",
+   "fieldtype": "Datetime",
+   "label": "Em pausa desde",
+   "idx": 4
+  },
+  {
+   "fieldname": "segundos_pausa",
+   "fieldtype": "Int",
+   "label": "Segundos em pausa",
+   "default": "0",
+   "idx": 5
+  },
+  {
+   "fieldname": "c1",
+   "fieldtype": "Column Break",
+   "idx": 6
+  },
+  {
+   "fieldname": "bilhete",
+   "fieldtype": "Data",
+   "label": "Bilhete",
+   "idx": 7
+  },
+  {
+   "fieldname": "tarefa",
+   "fieldtype": "Link",
+   "label": "Tarefa",
+   "options": "Task",
+   "idx": 8
+  },
+  {
+   "fieldname": "descricao",
+   "fieldtype": "Small Text",
+   "label": "Descrição",
+   "idx": 9
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1
+  },
+  {
+   "role": "Tempo Utilizador",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "if_owner": 1
+  }
+ ],
+ "track_changes": 1,
+ "sort_field": "inicio",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "description": "Um cronómetro a correr. Guarda só a hora de início: começa num aparelho, pára noutro. Ao parar, vira uma linha da folha de horas."
+}

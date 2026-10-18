@@ -21,6 +21,8 @@
   "data_inicio",
   "data_fim",
   "c2",
+  "horas_pack",
+  "desconto_pack",
   "horas_mes",
   "valor_mensal",
   "regra_excedente",
@@ -29,6 +31,12 @@
   "arredondamento_modo",
   "c3",
   "minimo_minutos",
+  "s_lig",
+  "projeto",
+  "cotacao",
+  "c4",
+  "credito_lancado",
+  "aviso_validade",
   "s_notas",
   "notas"
  ],
@@ -45,7 +53,7 @@
    "fieldname": "cliente",
    "fieldtype": "Link",
    "label": "Cliente",
-   "options": "Tempo Cliente",
+   "options": "Customer",
    "reqd": 1,
    "in_list_view": 1,
    "in_standard_filter": 1,
@@ -55,7 +63,7 @@
    "fieldname": "cliente_nome",
    "fieldtype": "Data",
    "label": "Nome do cliente",
-   "fetch_from": "cliente.nome_cliente",
+   "fetch_from": "cliente.customer_name",
    "read_only": 1,
    "idx": 3
   },
@@ -110,7 +118,8 @@
   {
    "fieldname": "data_fim",
    "fieldtype": "Date",
-   "label": "Fim",
+   "label": "Fim / validade do pack",
+   "description": "No fim, o saldo que sobrar de um pack expira.",
    "idx": 11
   },
   {
@@ -119,18 +128,32 @@
    "idx": 12
   },
   {
+   "fieldname": "horas_pack",
+   "fieldtype": "Float",
+   "label": "Horas do pack",
+   "depends_on": "eval:doc.tipo=='Pack'",
+   "idx": 13
+  },
+  {
+   "fieldname": "desconto_pack",
+   "fieldtype": "Percent",
+   "label": "Desconto do pack (%)",
+   "depends_on": "eval:doc.tipo=='Pack'",
+   "idx": 14
+  },
+  {
    "fieldname": "horas_mes",
    "fieldtype": "Float",
    "label": "Horas por mês",
    "depends_on": "eval:doc.tipo=='Avença'",
-   "idx": 13
+   "idx": 15
   },
   {
    "fieldname": "valor_mensal",
    "fieldtype": "Currency",
    "label": "Valor mensal",
    "depends_on": "eval:doc.tipo=='Avença'",
-   "idx": 14
+   "idx": 16
   },
   {
    "fieldname": "regra_excedente",
@@ -139,7 +162,7 @@
    "options": "Cobrar à hora\nAbater no próximo\nBloquear",
    "default": "Cobrar à hora",
    "depends_on": "eval:in_list(['Pack','Avença'], doc.tipo)",
-   "idx": 15
+   "idx": 17
   },
   {
    "fieldname": "s_arred",
@@ -147,7 +170,7 @@
    "label": "Arredondamento",
    "collapsible": 1,
    "description": "Vazio = o das Definições.",
-   "idx": 16
+   "idx": 18
   },
   {
    "fieldname": "arredondamento_bloco",
@@ -155,37 +178,77 @@
    "label": "Bloco (minutos)",
    "options": "\n0\n1\n5\n6\n10\n15\n30\n60",
    "description": "Escolha e não número: num campo numérico o vazio grava-se 0, e 0 aqui quer dizer «ao minuto».",
-   "idx": 17
+   "idx": 19
   },
   {
    "fieldname": "arredondamento_modo",
    "fieldtype": "Select",
    "label": "Modo",
    "options": "\ncima\nproximo",
-   "idx": 18
+   "idx": 20
   },
   {
    "fieldname": "c3",
    "fieldtype": "Column Break",
-   "idx": 19
+   "idx": 21
   },
   {
    "fieldname": "minimo_minutos",
    "fieldtype": "Select",
    "label": "Mínimo por registo (minutos)",
    "options": "\n0\n5\n10\n15\n30\n60",
-   "idx": 20
+   "idx": 22
+  },
+  {
+   "fieldname": "s_lig",
+   "fieldtype": "Section Break",
+   "label": "Origem e ligações",
+   "idx": 23
+  },
+  {
+   "fieldname": "projeto",
+   "fieldtype": "Link",
+   "label": "Projeto",
+   "options": "Project",
+   "idx": 24
+  },
+  {
+   "fieldname": "cotacao",
+   "fieldtype": "Link",
+   "label": "Orçamento",
+   "options": "Quotation",
+   "read_only": 1,
+   "idx": 25
+  },
+  {
+   "fieldname": "c4",
+   "fieldtype": "Column Break",
+   "idx": 26
+  },
+  {
+   "fieldname": "credito_lancado",
+   "fieldtype": "Check",
+   "label": "Crédito do pack lançado",
+   "read_only": 1,
+   "idx": 27
+  },
+  {
+   "fieldname": "aviso_validade",
+   "fieldtype": "Date",
+   "label": "Aviso de validade enviado",
+   "read_only": 1,
+   "idx": 28
   },
   {
    "fieldname": "s_notas",
    "fieldtype": "Section Break",
-   "idx": 21
+   "idx": 29
   },
   {
    "fieldname": "notas",
    "fieldtype": "Small Text",
    "label": "Notas",
-   "idx": 22
+   "idx": 30
   }
  ],
  "permissions": [

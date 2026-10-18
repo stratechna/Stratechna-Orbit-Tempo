@@ -1,0 +1,133 @@
+{
+ "doctype": "DocType",
+ "name": "Tempo Pack",
+ "module": "Tempo",
+ "custom": 0,
+ "engine": "InnoDB",
+ "modified": "2026-10-19 00:00:00.000000",
+ "creation": "2026-10-19 00:00:00.000000",
+ "owner": "Administrator",
+ "modified_by": "Administrator",
+ "field_order": [
+  "titulo",
+  "horas",
+  "desconto",
+  "validade_meses",
+  "c1",
+  "ativo",
+  "item",
+  "preco_hora",
+  "preco_total",
+  "abaixo_minimo"
+ ],
+ "fields": [
+  {
+   "fieldname": "titulo",
+   "fieldtype": "Data",
+   "label": "Título",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "horas",
+   "fieldtype": "Float",
+   "label": "Horas",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "desconto",
+   "fieldtype": "Percent",
+   "label": "Desconto (%)",
+   "in_list_view": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "validade_meses",
+   "fieldtype": "Int",
+   "label": "Validade (meses)",
+   "default": "12",
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "c1",
+   "fieldtype": "Column Break",
+   "idx": 5
+  },
+  {
+   "fieldname": "ativo",
+   "fieldtype": "Check",
+   "label": "À venda",
+   "default": "1",
+   "in_list_view": 1,
+   "idx": 6
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Artigo do ERP",
+   "options": "Item",
+   "read_only": 1,
+   "description": "Criado pela app, para entrar nos orçamentos.",
+   "idx": 7
+  },
+  {
+   "fieldname": "preco_hora",
+   "fieldtype": "Currency",
+   "label": "Preço/hora efetivo",
+   "read_only": 1,
+   "idx": 8
+  },
+  {
+   "fieldname": "preco_total",
+   "fieldtype": "Currency",
+   "label": "Preço do pack",
+   "read_only": 1,
+   "idx": 9
+  },
+  {
+   "fieldname": "abaixo_minimo",
+   "fieldtype": "Check",
+   "label": "Abaixo do preço mínimo",
+   "read_only": 1,
+   "idx": 10
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Tempo Utilizador",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1
+  }
+ ],
+ "track_changes": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "format:PCK-{###}",
+ "title_field": "titulo",
+ "description": "Catálogo de packs de horas com desconto. O preço vem do preço/hora por omissão.",
+ "naming_rule": "Expression",
+ "show_title_field_in_link": 1
+}

@@ -3,9 +3,7 @@ name: Testes do Tempo
 # Corre os testes da app num Frappe montado de raiz, com MariaDB e Redis do próprio
 # GitHub. Nada disto toca no Apps02: é lá que estão os tenants dos clientes.
 #
-# Dois sites, porque a app tem de funcionar das duas maneiras (plano, D1):
-#   sozinha     — frappe + orbit_tempo
-#   tenant leve — frappe + orbit + orbit_tempo (o «Tempo sozinho» do Orbit, sem CRM/Desk/ERP)
+# Versão 2 (18-10-2026, T3): o Tempo vive no Orbit — o site de testes leva o ERPNext.
 
 on:
   push:
@@ -44,7 +42,7 @@ jobs:
         run: python -m unittest orbit_tempo.testes.test_motor orbit_tempo.testes.test_traducoes
       - name: Sintaxe da interface
         run: node --check app/orbit_tempo/public/js/tempo.js
-      - name: Bench
+      - name: Bench com ERPNext
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq mariadb-client >/dev/null || true
           pip install -q frappe-bench
@@ -53,44 +51,15 @@ jobs:
           bench set-config -g redis_cache redis://localhost:13000
           bench set-config -g redis_queue redis://localhost:11000
           bench set-config -g redis_socketio redis://localhost:13000
+          bench get-app --skip-assets erpnext https://github.com/frappe/erpnext --branch version-16
           bench get-app --skip-assets orbit_tempo "$GITHUB_WORKSPACE/app"
-      - name: Site só com o Tempo
+      - name: Site (ERPNext + Tempo)
         working-directory: bench
         run: |
-          bench new-site sozinho.local --db-root-password root --admin-password admin \
-            --mariadb-user-host-login-scope=% --install-app orbit_tempo
-          bench --site sozinho.local set-config allow_tests true
-      - name: Testes (sozinho)
+          bench new-site teste.local --db-root-password root --admin-password admin \
+            --mariadb-user-host-login-scope=% --install-app erpnext --install-app orbit_tempo
+          bench --site teste.local set-config allow_tests true
+      - name: Testes de integração
         working-directory: bench
-        run: bench --site sozinho.local run-tests --module orbit_tempo.testes.test_integracao
-      - name: Ponta a ponta por HTTP (entrar, /tempo, API com CSRF)
-        working-directory: bench
-        run: |
-          bench use sozinho.local
-          bench serve --port 8000 > serve.log 2>&1 &
-          for i in $(seq 1 30); do curl -sf -o /dev/null localhost:8000/api/method/ping && break; sleep 2; done
-          H="Host: sozinho.local"
-          curl -sf -c jar -H "$H" -X POST localhost:8000/api/method/login -d usr=Administrator -d pwd=admin >/dev/null
-          curl -sf -b jar -H "$H" localhost:8000/tempo -o tempo.html
-          grep -q "TEMPO_BOOT" tempo.html && grep -q "/assets/orbit_tempo/js/tempo.js" tempo.html
-          curl -sf -b jar -H "$H" localhost:8000/tempo/semana | grep -q "TEMPO_BOOT"
-          # sem sessão, vai para a entrada
-          test "$(curl -s -o /dev/null -w '%{http_code}' -H "$H" localhost:8000/tempo)" = "302"
-          TOKEN=$(python -c "import re,json;h=open('tempo.html').read();print(json.loads(re.search(r'TEMPO_BOOT = (\{.*\});</script>',h).group(1))['csrf_token'])")
-          curl -sf -b jar -H "$H" localhost:8000/api/method/orbit_tempo.api.arranque | grep -q '"regimes"'
-          curl -sf -b jar -H "$H" -H "X-Frappe-CSRF-Token: $TOKEN" -H "Content-Type: application/json" \
-            -X POST localhost:8000/api/method/orbit_tempo.api.guardar_cliente \
-            -d '{"dados": {"nome_cliente": "Cliente HTTP"}}' | grep -q "Cliente HTTP"
-          # sem o token, uma escrita é recusada
-          test "$(curl -s -o /dev/null -w '%{http_code}' -b jar -H "$H" -H "Content-Type: application/json" -X POST \
-            localhost:8000/api/method/orbit_tempo.api.guardar_cliente -d '{"dados": {"nome_cliente": "X"}}')" != "200"
-          echo "ponta a ponta: ok"
-      - name: Tenant leve (frappe + orbit + orbit_tempo)
-        working-directory: bench
-        run: |
-          bench get-app --skip-assets orbit https://github.com/stratechna/Stratechna-Orbit-App
-          bench new-site leve.local --db-root-password root --admin-password admin \
-            --mariadb-user-host-login-scope=% --install-app orbit --install-app orbit_tempo
-          bench --site leve.local set-config allow_tests true
-          bench --site leve.local migrate
-          bench --site leve.local run-tests --module orbit_tempo.testes.test_integracao
+        # o before_tests do ERPNext prepara a empresa, os grupos e as listas de preços
+        run: bench --site teste.local run-tests --module orbit_tempo.testes.test_integracao

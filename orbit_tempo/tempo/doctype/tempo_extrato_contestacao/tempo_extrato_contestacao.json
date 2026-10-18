@@ -1,0 +1,49 @@
+{
+ "doctype": "DocType",
+ "name": "Tempo Extrato Contestacao",
+ "module": "Tempo",
+ "custom": 0,
+ "engine": "InnoDB",
+ "modified": "2026-10-19 00:00:00.000000",
+ "creation": "2026-10-19 00:00:00.000000",
+ "owner": "Administrator",
+ "modified_by": "Administrator",
+ "field_order": [
+  "movimento",
+  "motivo",
+  "resposta"
+ ],
+ "fields": [
+  {
+   "fieldname": "movimento",
+   "fieldtype": "Link",
+   "label": "Movimento",
+   "options": "Tempo Movimento",
+   "in_list_view": 1,
+   "columns": 3,
+   "idx": 1
+  },
+  {
+   "fieldname": "motivo",
+   "fieldtype": "Small Text",
+   "label": "Motivo",
+   "in_list_view": 1,
+   "columns": 5,
+   "idx": 2
+  },
+  {
+   "fieldname": "resposta",
+   "fieldtype": "Small Text",
+   "label": "Resposta",
+   "in_list_view": 1,
+   "columns": 2,
+   "idx": 3
+  }
+ ],
+ "permissions": [],
+ "track_changes": 0,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "istable": 1
+}

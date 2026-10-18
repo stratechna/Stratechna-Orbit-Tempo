@@ -1,0 +1,215 @@
+{
+ "doctype": "DocType",
+ "name": "Tempo Extrato",
+ "module": "Tempo",
+ "custom": 0,
+ "engine": "InnoDB",
+ "modified": "2026-10-19 00:00:00.000000",
+ "creation": "2026-10-19 00:00:00.000000",
+ "owner": "Administrator",
+ "modified_by": "Administrator",
+ "field_order": [
+  "cliente",
+  "acordo",
+  "desde",
+  "ate",
+  "c1",
+  "estado",
+  "enviado_em",
+  "aprovado_em",
+  "aprovado_por",
+  "aprovacao_tacita",
+  "s_tot",
+  "horas_consumidas",
+  "horas_oferta",
+  "c2",
+  "valor",
+  "saldo_final",
+  "s_cont",
+  "contestacoes",
+  "s_fat",
+  "fatura_numero",
+  "fatura_pdf"
+ ],
+ "fields": [
+  {
+   "fieldname": "cliente",
+   "fieldtype": "Link",
+   "label": "Cliente",
+   "options": "Customer",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "acordo",
+   "fieldtype": "Link",
+   "label": "Acordo",
+   "options": "Tempo Acordo",
+   "description": "Vazio = todos os acordos do cliente.",
+   "idx": 2
+  },
+  {
+   "fieldname": "desde",
+   "fieldtype": "Date",
+   "label": "Desde",
+   "reqd": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "ate",
+   "fieldtype": "Date",
+   "label": "Até",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "c1",
+   "fieldtype": "Column Break",
+   "idx": 5
+  },
+  {
+   "fieldname": "estado",
+   "fieldtype": "Select",
+   "label": "Estado",
+   "options": "Rascunho\nEnviado\nAprovado\nContestado\nFaturado",
+   "default": "Rascunho",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "idx": 6
+  },
+  {
+   "fieldname": "enviado_em",
+   "fieldtype": "Datetime",
+   "label": "Enviado em",
+   "read_only": 1,
+   "idx": 7
+  },
+  {
+   "fieldname": "aprovado_em",
+   "fieldtype": "Datetime",
+   "label": "Aprovado em",
+   "read_only": 1,
+   "idx": 8
+  },
+  {
+   "fieldname": "aprovado_por",
+   "fieldtype": "Data",
+   "label": "Aprovado por",
+   "read_only": 1,
+   "idx": 9
+  },
+  {
+   "fieldname": "aprovacao_tacita",
+   "fieldtype": "Check",
+   "label": "Aprovação tácita",
+   "read_only": 1,
+   "idx": 10
+  },
+  {
+   "fieldname": "s_tot",
+   "fieldtype": "Section Break",
+   "label": "Totais",
+   "idx": 11
+  },
+  {
+   "fieldname": "horas_consumidas",
+   "fieldtype": "Float",
+   "label": "Horas a cobrar",
+   "read_only": 1,
+   "idx": 12
+  },
+  {
+   "fieldname": "horas_oferta",
+   "fieldtype": "Float",
+   "label": "Horas oferecidas",
+   "read_only": 1,
+   "idx": 13
+  },
+  {
+   "fieldname": "c2",
+   "fieldtype": "Column Break",
+   "idx": 14
+  },
+  {
+   "fieldname": "valor",
+   "fieldtype": "Currency",
+   "label": "Valor",
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 15
+  },
+  {
+   "fieldname": "saldo_final",
+   "fieldtype": "Float",
+   "label": "Saldo no fim (horas)",
+   "read_only": 1,
+   "idx": 16
+  },
+  {
+   "fieldname": "s_cont",
+   "fieldtype": "Section Break",
+   "label": "Contestações",
+   "idx": 17
+  },
+  {
+   "fieldname": "contestacoes",
+   "fieldtype": "Table",
+   "label": "Contestações",
+   "options": "Tempo Extrato Contestacao",
+   "idx": 18
+  },
+  {
+   "fieldname": "s_fat",
+   "fieldtype": "Section Break",
+   "label": "Fatura (software certificado)",
+   "idx": 19
+  },
+  {
+   "fieldname": "fatura_numero",
+   "fieldtype": "Data",
+   "label": "N.º da fatura",
+   "idx": 20
+  },
+  {
+   "fieldname": "fatura_pdf",
+   "fieldtype": "Attach",
+   "label": "PDF da fatura",
+   "idx": 21
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Tempo Utilizador",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1
+  }
+ ],
+ "track_changes": 1,
+ "sort_field": "ate",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "format:EXT-{YYYY}-{####}",
+ "description": "O extrato de um período: fechado pelo Admin, aprovado (ou contestado) pelo cliente. As linhas ficam trancadas depois do envio.",
+ "naming_rule": "Expression"
+}

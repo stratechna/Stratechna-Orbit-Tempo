@@ -65,3 +65,5 @@ def usar(doc) -> None:
     d.regime = doc.regime
     d.pais = doc.pais
     d.save(ignore_permissions=True)
+    from orbit_tempo import precos
+    precos.sincronizar()

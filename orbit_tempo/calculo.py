@@ -39,3 +39,25 @@ def valor(minutos: float, preco_hora: float) -> float:
 
 def horas(minutos: float) -> float:
     return round((minutos or 0) / 60, 4)
+
+
+def ler_horas(texto) -> float:
+    """Horas escritas como no portal: «10.8», «10,5», «10H30m», «1H30M», «90m», «1:30».
+
+    Um número simples é em horas (como no «Novo Registo» do portal). Devolve horas
+    decimais; ValueError se não se perceber.
+    """
+    import re
+    t = str(texto or "").strip().lower().replace(" ", "").replace(",", ".")
+    if not t:
+        raise ValueError("vazio")
+    m = re.fullmatch(r"(\d+(?:\.\d+)?)", t)
+    if m:
+        return float(m.group(1))
+    m = re.fullmatch(r"(\d+):(\d{1,2})", t)
+    if m:
+        return int(m.group(1)) + int(m.group(2)) / 60
+    m = re.fullmatch(r"(?:(\d+(?:\.\d+)?)h)?(?:(\d+(?:\.\d+)?)m(?:in)?)?", t)
+    if m and (m.group(1) or m.group(2)):
+        return float(m.group(1) or 0) + float(m.group(2) or 0) / 60
+    raise ValueError(f"não percebo «{texto}»")

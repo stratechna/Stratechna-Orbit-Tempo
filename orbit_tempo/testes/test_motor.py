@@ -113,6 +113,19 @@ class TestArredondamento(unittest.TestCase):
         self.assertEqual(f(10, 6, minimo=30), 30)
         self.assertEqual(f(0, 6, minimo=30), 0)
 
+    def test_ler_horas_como_no_portal(self):
+        f = calculo.ler_horas
+        self.assertEqual(f("10.8"), 10.8)
+        self.assertEqual(f("10,5"), 10.5)
+        self.assertEqual(f("10H30m"), 10.5)
+        self.assertEqual(f("1H30M"), 1.5)
+        self.assertEqual(f("90m"), 1.5)
+        self.assertEqual(f("1:30"), 1.5)
+        self.assertEqual(f("2h"), 2)
+        for mau in ("", "abc", "1h30x"):
+            with self.assertRaises(ValueError):
+                f(mau)
+
     def test_valor(self):
         self.assertEqual(calculo.valor(90, 50), 75.0)
         self.assertEqual(calculo.valor(20, 45.54), 15.18)

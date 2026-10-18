@@ -1,5 +1,5 @@
 from frappe.model.document import Document
 
 
-class TempoCliente(Document):
+class TempoExtratoContestacao(Document):
     pass
