@@ -1,0 +1,70 @@
+{
+ "doctype": "DocType",
+ "name": "Tempo Estudo Despesa",
+ "module": "Tempo",
+ "custom": 0,
+ "engine": "InnoDB",
+ "modified": "2026-10-19 00:00:00.000000",
+ "creation": "2026-10-19 00:00:00.000000",
+ "owner": "Administrator",
+ "modified_by": "Administrator",
+ "field_order": [
+  "categoria",
+  "descricao",
+  "valor",
+  "periodicidade",
+  "anos"
+ ],
+ "fields": [
+  {
+   "fieldname": "categoria",
+   "fieldtype": "Select",
+   "label": "Categoria",
+   "in_list_view": 1,
+   "options": "Contabilidade\nSoftware\nComunicações\nEspaço\nSeguros\nDeslocações\nFormação\nMarketing\nEquipamento\nBanco e pagamentos\nOutros",
+   "columns": 2,
+   "idx": 1
+  },
+  {
+   "fieldname": "descricao",
+   "fieldtype": "Data",
+   "label": "Descrição",
+   "in_list_view": 1,
+   "columns": 3,
+   "idx": 2
+  },
+  {
+   "fieldname": "valor",
+   "fieldtype": "Currency",
+   "label": "Valor",
+   "in_list_view": 1,
+   "columns": 2,
+   "idx": 3
+  },
+  {
+   "fieldname": "periodicidade",
+   "fieldtype": "Select",
+   "label": "Periodicidade",
+   "options": "mensal\nanual\namortizacao",
+   "default": "mensal",
+   "in_list_view": 1,
+   "columns": 2,
+   "idx": 4
+  },
+  {
+   "fieldname": "anos",
+   "fieldtype": "Float",
+   "label": "Anos (amortização)",
+   "in_list_view": 1,
+   "columns": 1,
+   "depends_on": "eval:doc.periodicidade=='amortizacao'",
+   "idx": 5
+  }
+ ],
+ "permissions": [],
+ "track_changes": 0,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "istable": 1
+}

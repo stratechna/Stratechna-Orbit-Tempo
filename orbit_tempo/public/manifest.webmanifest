@@ -1,0 +1,12 @@
+{
+  "name": "Tempo",
+  "short_name": "Tempo",
+  "start_url": "/tempo",
+  "scope": "/tempo",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#22303d",
+  "icons": [
+    {"src": "/assets/orbit_tempo/icons/tempo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
+  ]
+}

@@ -1,0 +1,148 @@
+{
+ "doctype": "DocType",
+ "name": "Tempo Definicoes",
+ "module": "Tempo",
+ "custom": 0,
+ "engine": "InnoDB",
+ "modified": "2026-10-19 00:00:00.000000",
+ "creation": "2026-10-19 00:00:00.000000",
+ "owner": "Administrator",
+ "modified_by": "Administrator",
+ "field_order": [
+  "nome_comercial",
+  "logotipo",
+  "cor",
+  "c1",
+  "moeda",
+  "pais",
+  "regime",
+  "s_arred",
+  "arredondamento_bloco",
+  "arredondamento_modo",
+  "minimo_minutos",
+  "c2",
+  "preco_hora",
+  "estudo_ativo"
+ ],
+ "fields": [
+  {
+   "fieldname": "nome_comercial",
+   "fieldtype": "Data",
+   "label": "Nome comercial",
+   "description": "Como o freelancer aparece aos clientes (extratos, portal).",
+   "idx": 1
+  },
+  {
+   "fieldname": "logotipo",
+   "fieldtype": "Attach Image",
+   "label": "Logótipo",
+   "idx": 2
+  },
+  {
+   "fieldname": "cor",
+   "fieldtype": "Color",
+   "label": "Cor principal",
+   "idx": 3
+  },
+  {
+   "fieldname": "c1",
+   "fieldtype": "Column Break",
+   "idx": 4
+  },
+  {
+   "fieldname": "moeda",
+   "fieldtype": "Data",
+   "label": "Moeda",
+   "default": "EUR",
+   "length": 3,
+   "description": "Código ISO (EUR, USD…). Texto e não ligação: um site só com o Tempo pode não ter a lista de moedas.",
+   "idx": 5
+  },
+  {
+   "fieldname": "pais",
+   "fieldtype": "Select",
+   "label": "País",
+   "options": "PT\nES\nOutro",
+   "default": "PT",
+   "idx": 6
+  },
+  {
+   "fieldname": "regime",
+   "fieldtype": "Select",
+   "label": "Regime fiscal",
+   "options": "PT_IND\nPT_SOC\nES_AUT\nES_SL\nOUTRO",
+   "default": "PT_IND",
+   "idx": 7
+  },
+  {
+   "fieldname": "s_arred",
+   "fieldtype": "Section Break",
+   "label": "Arredondamento por omissão",
+   "description": "Cada acordo pode ter o seu; vazio = estes.",
+   "idx": 8
+  },
+  {
+   "fieldname": "arredondamento_bloco",
+   "fieldtype": "Int",
+   "label": "Bloco (minutos)",
+   "default": "15",
+   "description": "0 ou 1 = ao minuto.",
+   "idx": 9
+  },
+  {
+   "fieldname": "arredondamento_modo",
+   "fieldtype": "Select",
+   "label": "Modo",
+   "options": "cima\nproximo",
+   "default": "cima",
+   "idx": 10
+  },
+  {
+   "fieldname": "minimo_minutos",
+   "fieldtype": "Int",
+   "label": "Mínimo por registo (minutos)",
+   "default": "0",
+   "idx": 11
+  },
+  {
+   "fieldname": "c2",
+   "fieldtype": "Column Break",
+   "idx": 12
+  },
+  {
+   "fieldname": "preco_hora",
+   "fieldtype": "Currency",
+   "label": "Preço/hora por omissão",
+   "description": "Vem do estudo do preço/hora ativo quando se marca «Usar este estudo».",
+   "idx": 13
+  },
+  {
+   "fieldname": "estudo_ativo",
+   "fieldtype": "Link",
+   "label": "Estudo ativo",
+   "options": "Tempo Estudo Preco",
+   "read_only": 1,
+   "idx": 14
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Tempo Utilizador",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  }
+ ],
+ "track_changes": 0,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "issingle": 1,
+ "description": "Definições da app Tempo neste site."
+}

@@ -1,0 +1,227 @@
+{
+ "doctype": "DocType",
+ "name": "Tempo Registo",
+ "module": "Tempo",
+ "custom": 0,
+ "engine": "InnoDB",
+ "modified": "2026-10-19 00:00:00.000000",
+ "creation": "2026-10-19 00:00:00.000000",
+ "owner": "Administrator",
+ "modified_by": "Administrator",
+ "field_order": [
+  "acordo",
+  "cliente",
+  "data",
+  "descricao",
+  "c1",
+  "inicio",
+  "fim",
+  "em_curso",
+  "duracao_minutos",
+  "minutos_faturados",
+  "s_cob",
+  "faturavel",
+  "oferta",
+  "c2",
+  "preco_hora",
+  "valor",
+  "movimento",
+  "s_lig",
+  "ligacao_doctype",
+  "c3",
+  "ligacao_nome",
+  "utilizador"
+ ],
+ "fields": [
+  {
+   "fieldname": "acordo",
+   "fieldtype": "Link",
+   "label": "Acordo",
+   "options": "Tempo Acordo",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "cliente",
+   "fieldtype": "Link",
+   "label": "Cliente",
+   "options": "Tempo Cliente",
+   "fetch_from": "acordo.cliente",
+   "read_only": 1,
+   "in_standard_filter": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "data",
+   "fieldtype": "Date",
+   "label": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "default": "Today",
+   "idx": 3
+  },
+  {
+   "fieldname": "descricao",
+   "fieldtype": "Small Text",
+   "label": "Descrição",
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "c1",
+   "fieldtype": "Column Break",
+   "idx": 5
+  },
+  {
+   "fieldname": "inicio",
+   "fieldtype": "Datetime",
+   "label": "Início",
+   "idx": 6
+  },
+  {
+   "fieldname": "fim",
+   "fieldtype": "Datetime",
+   "label": "Fim",
+   "idx": 7
+  },
+  {
+   "fieldname": "em_curso",
+   "fieldtype": "Check",
+   "label": "Cronómetro a correr",
+   "read_only": 1,
+   "idx": 8
+  },
+  {
+   "fieldname": "duracao_minutos",
+   "fieldtype": "Float",
+   "label": "Duração real (minutos)",
+   "idx": 9
+  },
+  {
+   "fieldname": "minutos_faturados",
+   "fieldtype": "Int",
+   "label": "Minutos a cobrar",
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 10
+  },
+  {
+   "fieldname": "s_cob",
+   "fieldtype": "Section Break",
+   "label": "Cobrança",
+   "idx": 11
+  },
+  {
+   "fieldname": "faturavel",
+   "fieldtype": "Check",
+   "label": "Faturável",
+   "default": "1",
+   "idx": 12
+  },
+  {
+   "fieldname": "oferta",
+   "fieldtype": "Check",
+   "label": "Oferta",
+   "description": "Conta como feito, não desconta nem se cobra.",
+   "idx": 13
+  },
+  {
+   "fieldname": "c2",
+   "fieldtype": "Column Break",
+   "idx": 14
+  },
+  {
+   "fieldname": "preco_hora",
+   "fieldtype": "Currency",
+   "label": "Preço/hora",
+   "read_only": 1,
+   "idx": 15
+  },
+  {
+   "fieldname": "valor",
+   "fieldtype": "Currency",
+   "label": "Valor",
+   "read_only": 1,
+   "idx": 16
+  },
+  {
+   "fieldname": "movimento",
+   "fieldtype": "Link",
+   "label": "Movimento no livro",
+   "options": "Tempo Movimento",
+   "read_only": 1,
+   "idx": 17
+  },
+  {
+   "fieldname": "s_lig",
+   "fieldtype": "Section Break",
+   "label": "Ligação",
+   "collapsible": 1,
+   "idx": 18
+  },
+  {
+   "fieldname": "ligacao_doctype",
+   "fieldtype": "Link",
+   "label": "Tipo de ficha",
+   "options": "DocType",
+   "idx": 19
+  },
+  {
+   "fieldname": "c3",
+   "fieldtype": "Column Break",
+   "idx": 20
+  },
+  {
+   "fieldname": "ligacao_nome",
+   "fieldtype": "Dynamic Link",
+   "label": "Ficha",
+   "options": "ligacao_doctype",
+   "idx": 21
+  },
+  {
+   "fieldname": "utilizador",
+   "fieldtype": "Link",
+   "label": "Quem registou",
+   "options": "User",
+   "default": "__user",
+   "read_only": 1,
+   "idx": 22
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Tempo Utilizador",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1
+  }
+ ],
+ "track_changes": 1,
+ "sort_field": "data",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "format:REG-{######}",
+ "title_field": "descricao",
+ "description": "O tempo que o freelancer anota (cronómetro ou manual). Ao fechar, gera o consumo no livro.",
+ "naming_rule": "Expression",
+ "show_title_field_in_link": 1
+}

@@ -1,0 +1,154 @@
+{
+ "doctype": "DocType",
+ "name": "Tempo Cliente",
+ "module": "Tempo",
+ "custom": 0,
+ "engine": "InnoDB",
+ "modified": "2026-10-19 00:00:00.000000",
+ "creation": "2026-10-19 00:00:00.000000",
+ "owner": "Administrator",
+ "modified_by": "Administrator",
+ "field_order": [
+  "nome_cliente",
+  "nif",
+  "email",
+  "telefone",
+  "c1",
+  "idioma",
+  "ativo",
+  "s_lig",
+  "ligacao_doctype",
+  "c2",
+  "ligacao_nome",
+  "s_notas",
+  "notas"
+ ],
+ "fields": [
+  {
+   "fieldname": "nome_cliente",
+   "fieldtype": "Data",
+   "label": "Nome",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "nif",
+   "fieldtype": "Data",
+   "label": "NIF / NIF-IVA",
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email",
+   "in_list_view": 1,
+   "description": "Para o portal de consulta e os extratos.",
+   "idx": 3
+  },
+  {
+   "fieldname": "telefone",
+   "fieldtype": "Data",
+   "label": "Telefone",
+   "options": "Phone",
+   "idx": 4
+  },
+  {
+   "fieldname": "c1",
+   "fieldtype": "Column Break",
+   "idx": 5
+  },
+  {
+   "fieldname": "idioma",
+   "fieldtype": "Link",
+   "label": "Língua",
+   "options": "Language",
+   "description": "Língua dos extratos e do portal deste cliente.",
+   "idx": 6
+  },
+  {
+   "fieldname": "ativo",
+   "fieldtype": "Check",
+   "label": "Ativo",
+   "default": "1",
+   "in_list_view": 1,
+   "idx": 7
+  },
+  {
+   "fieldname": "s_lig",
+   "fieldtype": "Section Break",
+   "label": "Ligação a outras apps",
+   "collapsible": 1,
+   "description": "Opcional: a ficha correspondente no CRM, no ERP ou no Desk, quando instalados.",
+   "idx": 8
+  },
+  {
+   "fieldname": "ligacao_doctype",
+   "fieldtype": "Link",
+   "label": "Tipo de ficha",
+   "options": "DocType",
+   "idx": 9
+  },
+  {
+   "fieldname": "c2",
+   "fieldtype": "Column Break",
+   "idx": 10
+  },
+  {
+   "fieldname": "ligacao_nome",
+   "fieldtype": "Dynamic Link",
+   "label": "Ficha",
+   "options": "ligacao_doctype",
+   "idx": 11
+  },
+  {
+   "fieldname": "s_notas",
+   "fieldtype": "Section Break",
+   "idx": 12
+  },
+  {
+   "fieldname": "notas",
+   "fieldtype": "Small Text",
+   "label": "Notas",
+   "idx": 13
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Tempo Utilizador",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1
+  }
+ ],
+ "track_changes": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "format:CLI-{#####}",
+ "title_field": "nome_cliente",
+ "search_fields": "nome_cliente,nif,email",
+ "description": "Um cliente do freelancer (não da Stratechna).",
+ "naming_rule": "Expression",
+ "show_title_field_in_link": 1
+}

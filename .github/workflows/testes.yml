@@ -1,0 +1,77 @@
+name: Testes do Tempo
+
+# Corre os testes da app num Frappe montado de raiz, com MariaDB e Redis do próprio
+# GitHub. Nada disto toca no Apps02: é lá que estão os tenants dos clientes.
+#
+# Dois sites, porque a app tem de funcionar das duas maneiras (plano, D1):
+#   sozinha     — frappe + orbit_tempo
+#   tenant leve — frappe + orbit + orbit_tempo (o «Tempo sozinho» do Orbit, sem CRM/Desk/ERP)
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    services:
+      mariadb:
+        image: mariadb:11.8
+        env:
+          MARIADB_ROOT_PASSWORD: root
+        ports: ["3306:3306"]
+        options: --health-cmd="healthcheck.sh --connect --innodb_initialized" --health-interval=5s --health-timeout=2s --health-retries=20
+      redis-cache:
+        image: redis:7-alpine
+        ports: ["13000:6379"]
+      redis-queue:
+        image: redis:7-alpine
+        ports: ["11000:6379"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: app
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Motor e traduções (sem bench)
+        working-directory: app
+        run: python -m unittest orbit_tempo.testes.test_motor orbit_tempo.testes.test_traducoes
+      - name: Sintaxe da interface
+        run: node --check app/orbit_tempo/public/js/tempo.js
+      - name: Bench
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq mariadb-client >/dev/null || true
+          pip install -q frappe-bench
+          bench init --skip-redis-config-generation --skip-assets --frappe-branch version-16 --python "$(which python)" bench
+          cd bench
+          bench set-config -g redis_cache redis://localhost:13000
+          bench set-config -g redis_queue redis://localhost:11000
+          bench set-config -g redis_socketio redis://localhost:13000
+          bench get-app --skip-assets orbit_tempo "$GITHUB_WORKSPACE/app"
+      - name: Site só com o Tempo
+        working-directory: bench
+        run: |
+          bench new-site sozinho.local --db-root-password root --admin-password admin \
+            --mariadb-user-host-login-scope=% --install-app orbit_tempo
+          bench --site sozinho.local set-config allow_tests true
+      - name: Testes (sozinho)
+        working-directory: bench
+        run: bench --site sozinho.local run-tests --module orbit_tempo.testes.test_integracao
+      - name: A página /tempo responde
+        working-directory: bench
+        run: bench --site sozinho.local execute orbit_tempo.testes.verificar_pagina.correr
+      - name: Tenant leve (frappe + orbit + orbit_tempo)
+        working-directory: bench
+        run: |
+          bench get-app --skip-assets orbit https://github.com/stratechna/Stratechna-Orbit-App
+          bench new-site leve.local --db-root-password root --admin-password admin \
+            --mariadb-user-host-login-scope=% --install-app orbit --install-app orbit_tempo
+          bench --site leve.local set-config allow_tests true
+          bench --site leve.local migrate
+          bench --site leve.local run-tests --module orbit_tempo.testes.test_integracao

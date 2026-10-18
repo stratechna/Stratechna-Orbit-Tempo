@@ -1,0 +1,285 @@
+{
+ "doctype": "DocType",
+ "name": "Tempo Estudo Preco",
+ "module": "Tempo",
+ "custom": 0,
+ "engine": "InnoDB",
+ "modified": "2026-10-19 00:00:00.000000",
+ "creation": "2026-10-19 00:00:00.000000",
+ "owner": "Administrator",
+ "modified_by": "Administrator",
+ "field_order": [
+  "titulo",
+  "ano",
+  "ativo",
+  "c0",
+  "pais",
+  "regime",
+  "s_desp",
+  "despesas",
+  "s_rend",
+  "liquido_mensal",
+  "c1",
+  "meses_rendimento",
+  "s_cal",
+  "horas_semana",
+  "dias_semana",
+  "pct_faturavel",
+  "margem",
+  "c2",
+  "dias_ferias",
+  "dias_feriados",
+  "dias_imprevistos",
+  "dias_formacao",
+  "s_par",
+  "parametros_json",
+  "s_res",
+  "custo_estrutura_hora",
+  "preco_minimo",
+  "preco_recomendado",
+  "c3",
+  "resultado_json"
+ ],
+ "fields": [
+  {
+   "fieldname": "titulo",
+   "fieldtype": "Data",
+   "label": "Título",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "ano",
+   "fieldtype": "Int",
+   "label": "Ano",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "ativo",
+   "fieldtype": "Check",
+   "label": "Em uso",
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "c0",
+   "fieldtype": "Column Break",
+   "idx": 4
+  },
+  {
+   "fieldname": "pais",
+   "fieldtype": "Select",
+   "label": "País",
+   "options": "PT\nES\nOutro",
+   "default": "PT",
+   "idx": 5
+  },
+  {
+   "fieldname": "regime",
+   "fieldtype": "Select",
+   "label": "Regime fiscal",
+   "options": "PT_IND\nPT_SOC\nES_AUT\nES_SL\nOUTRO",
+   "default": "PT_IND",
+   "reqd": 1,
+   "idx": 6
+  },
+  {
+   "fieldname": "s_desp",
+   "fieldtype": "Section Break",
+   "label": "Despesas da estrutura",
+   "idx": 7
+  },
+  {
+   "fieldname": "despesas",
+   "fieldtype": "Table",
+   "label": "Despesas",
+   "options": "Tempo Estudo Despesa",
+   "idx": 8
+  },
+  {
+   "fieldname": "s_rend",
+   "fieldtype": "Section Break",
+   "label": "Rendimento desejado",
+   "idx": 9
+  },
+  {
+   "fieldname": "liquido_mensal",
+   "fieldtype": "Currency",
+   "label": "Líquido por mês",
+   "idx": 10
+  },
+  {
+   "fieldname": "c1",
+   "fieldtype": "Column Break",
+   "idx": 11
+  },
+  {
+   "fieldname": "meses_rendimento",
+   "fieldtype": "Select",
+   "label": "Meses",
+   "options": "12\n14",
+   "default": "12",
+   "idx": 12
+  },
+  {
+   "fieldname": "s_cal",
+   "fieldtype": "Section Break",
+   "label": "Calendário",
+   "idx": 13
+  },
+  {
+   "fieldname": "horas_semana",
+   "fieldtype": "Float",
+   "label": "Horas por semana",
+   "default": "40",
+   "idx": 14
+  },
+  {
+   "fieldname": "dias_semana",
+   "fieldtype": "Float",
+   "label": "Dias por semana",
+   "default": "5",
+   "idx": 15
+  },
+  {
+   "fieldname": "pct_faturavel",
+   "fieldtype": "Percent",
+   "label": "Tempo faturável (%)",
+   "default": "60",
+   "idx": 16
+  },
+  {
+   "fieldname": "margem",
+   "fieldtype": "Percent",
+   "label": "Margem (%)",
+   "default": "10",
+   "idx": 17
+  },
+  {
+   "fieldname": "c2",
+   "fieldtype": "Column Break",
+   "idx": 18
+  },
+  {
+   "fieldname": "dias_ferias",
+   "fieldtype": "Float",
+   "label": "Dias de férias",
+   "default": "22",
+   "idx": 19
+  },
+  {
+   "fieldname": "dias_feriados",
+   "fieldtype": "Float",
+   "label": "Feriados",
+   "default": "13",
+   "idx": 20
+  },
+  {
+   "fieldname": "dias_imprevistos",
+   "fieldtype": "Float",
+   "label": "Doença e imprevistos (dias)",
+   "default": "5",
+   "idx": 21
+  },
+  {
+   "fieldname": "dias_formacao",
+   "fieldtype": "Float",
+   "label": "Formação (dias)",
+   "default": "5",
+   "idx": 22
+  },
+  {
+   "fieldname": "s_par",
+   "fieldtype": "Section Break",
+   "label": "Parâmetros fiscais próprios",
+   "collapsible": 1,
+   "description": "Só o que for diferente da tabela do ano (ex.: {\"irs_taxa_media\": 0.15, \"primeiro_ano\": 1}).",
+   "idx": 23
+  },
+  {
+   "fieldname": "parametros_json",
+   "fieldtype": "JSON",
+   "label": "Parâmetros",
+   "idx": 24
+  },
+  {
+   "fieldname": "s_res",
+   "fieldtype": "Section Break",
+   "label": "Resultado",
+   "idx": 25
+  },
+  {
+   "fieldname": "custo_estrutura_hora",
+   "fieldtype": "Currency",
+   "label": "Custo da estrutura/hora",
+   "read_only": 1,
+   "idx": 26
+  },
+  {
+   "fieldname": "preco_minimo",
+   "fieldtype": "Currency",
+   "label": "Preço mínimo",
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 27
+  },
+  {
+   "fieldname": "preco_recomendado",
+   "fieldtype": "Currency",
+   "label": "Preço recomendado",
+   "read_only": 1,
+   "in_list_view": 1,
+   "idx": 28
+  },
+  {
+   "fieldname": "c3",
+   "fieldtype": "Column Break",
+   "idx": 29
+  },
+  {
+   "fieldname": "resultado_json",
+   "fieldtype": "JSON",
+   "label": "Detalhe",
+   "read_only": 1,
+   "idx": 30
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Tempo Utilizador",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1
+  }
+ ],
+ "track_changes": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "format:EST-{#####}",
+ "title_field": "titulo",
+ "description": "Estudo do preço/hora: despesas, rendimento desejado, calendário e regime fiscal.",
+ "naming_rule": "Expression",
+ "show_title_field_in_link": 1
+}

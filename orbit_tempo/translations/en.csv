@@ -1,0 +1,243 @@
+% de desconto,% discount
+(sem descrição),(no description)
+0 = ao minuto,0 = to the minute
+1.º ano (isento de Segurança Social),1st year (exempt from Social Security)
+12 meses,12 months
+14 meses (como subsídios de férias e Natal),14 months (like holiday and Christmas bonuses)
+A calcular…,Calculating…
+A carregar…,Loading…
+A cobrar,To bill
+A data de fim é anterior à de início.,The end date is before the start date.
+A duração não pode ser negativa.,The duration cannot be negative.
+Acordo,Agreement
+Acordo guardado.,Agreement saved.
+Ainda não há clientes.,No clients yet.
+Ainda não há estudos.,No studies yet.
+Ainda não há parâmetros de {0}; usam-se os de {1}.,There are no parameters for {0} yet; using those of {1}.
+Ano,Year
+Anos,Years
+Ao mais próximo,To the nearest
+Apagar,Delete
+Apagar este registo?,Delete this entry?
+Arredondamento por omissão,Default rounding
+Arredondar,Round
+Ativo,Active
+Avença,Retainer
+Avença (em breve),Retainer (coming soon)
+Banco e pagamentos,Bank and payments
+Base de incidência da Segurança Social,Social Security contribution base (PT)
+Bloco (min),Block (min)
+Cancelar,Cancel
+Categoria,Category
+Cliente,Client
+Cliente guardado.,Client saved.
+Clientes,Clients
+Coeficiente do regime simplificado,Simplified regime coefficient (PT)
+"Comercial, propostas, administração e formação não se faturam. Entre 55 % e 70 % é o habitual.","Sales, proposals, admin and training are not billable. Between 55% and 70% is typical."
+Como aparece aos seus clientes.,How your clients see you.
+Computador,Computer
+Comunicações,Communications
+Contabilidade,Accounting
+Contabilista / gestoria,Accountant
+Cor,Colour
+Criar o primeiro cliente,Create the first client
+Cuota de autónomos,Self-employed contribution (ES)
+Cuota de autónomos (€/mês),Self-employed contribution (€/month)
+Custo da estrutura/hora,Overhead cost/hour
+Das Definições,From Settings
+Data,Date
+Definições,Settings
+Definições guardadas.,Settings saved.
+Descartar,Discard
+Descartar este cronómetro sem guardar?,Discard this timer without saving?
+Desconto,Discount
+Desconto máximo sem descer do preço mínimo: {0} %.,Maximum discount without going below the minimum price: {0}%.
+Descrição,Description
+Deslocações,Travel
+Despesa,Expense
+Despesas da estrutura,Overheads
+Despesas por ano,Expenses per year
+Dias por semana,Days per week
+Doença e imprevistos (dias),Sickness and contingencies (days)
+Duração,Duration
+"Duração inválida. Exemplos: 1:30, 90, 1,5h.","Invalid duration. Examples: 1:30, 90, 1.5h."
+E se trabalhar mais ou menos horas?,What if you work more or fewer hours?
+Editar,Edit
+Editar acordo,Edit agreement
+Editar cliente,Edit client
+Editar registo,Edit entry
+Email,Email
+Equipamento,Equipment
+Escolha o acordo.,Choose the agreement.
+Escritório / cowork / parte da casa,Office / cowork / part of home
+Espanha — autónomo,Spain — self-employed (autónomo)
+Espanha — sociedad limitada,Spain — limited company (S.L.)
+Espaço,Premises
+Este registo já está num extrato e não pode ser apagado.,This entry is already in a statement and cannot be deleted.
+Este registo já está num extrato. Corrija com um registo de ajuste.,This entry is already in a statement. Correct it with an adjustment entry.
+Estimativa: os parâmetros fiscais ainda não foram validados por um contabilista.,Estimate: the tax parameters have not yet been validated by an accountant.
+Estudo de {0},{0} study
+Estudo do preço/hora,Hourly rate study
+Estudo guardado.,Study saved.
+Estudo guardado. O preço recomendado passa a ser o preço/hora por omissão.,Study saved. The recommended price is now the default hourly rate.
+Estudos,Studies
+"Exemplos: 1:30, 90 (minutos), 1,5h. O arredondamento do acordo aplica-se ao gravar.","Examples: 1:30, 90 (minutes), 1.5h. The agreement's rounding is applied on save."
+Faltam parâmetros fiscais para este regime: {0}.,Tax parameters missing for this regime: {0}.
+Faturação mínima por ano,Minimum revenue per year
+Faturação recomendada por ano,Recommended revenue per year
+Faturável,Billable
+Faça o estudo do preço/hora para o calcular.,Do the hourly rate study to calculate it.
+Feriados (dias),Public holidays (days)
+Formação,Training
+Formação (dias),Training (days)
+Férias (dias),Holidays (days)
+Guardar,Save
+Guardar e usar este preço,Save and use this price
+Hoje,Today
+Hora,Hourly
+Horas,Hours
+Horas a cobrar,Hours to bill
+Horas disponíveis por ano,Available hours per year
+Horas faturáveis por ano,Billable hours per year
+Horas por semana,Hours per week
+Horas trabalhadas,Hours worked
+IRC,Corporate tax (PT)
+IRPF,Income tax (ES)
+IRS,Income tax (PT)
+IVA,VAT
+Imposto sobre o lucro da margem,Tax on the margin profit
+Impostos,Taxes
+Impostos e contribuições,Taxes and contributions
+Impuesto de Sociedades,Corporate tax (ES)
+Iniciar,Start
+Juntar linha,Add row
+Juntar tempo,Add time
+Já há um cronómetro a correr ({0}). Pare-o primeiro.,A timer is already running ({0}). Stop it first.
+Língua,Language
+Líquido por mês,Net per month
+Mais de 75 % de tempo faturável é raro. Confirme se é realista.,More than 75% billable time is rare. Check that it is realistic.
+Margem (%),Margin (%)
+Margem e packs,Margin and packs
+Marketing,Marketing
+Meses por ano,Months per year
+Moeda,Currency
+Mínimo (min),Minimum (min)
+NIF / NIF-IVA,Tax ID / VAT number
+Nome,Name
+Nome comercial,Trading name
+Notas,Notes
+Novo acordo,New agreement
+Novo cliente,New client
+Novo estudo,New study
+Novo registo,New entry
+O bloco de arredondamento não pode ser negativo.,The rounding block cannot be negative.
+O estudo ainda não tem preço recomendado.,The study does not have a recommended price yet.
+O estudo não fecha: {0},The study does not add up: {0}
+O fim é anterior ao início.,The end is before the start.
+O preço/hora não pode ser negativo.,The hourly rate cannot be negative.
+O que está a fazer?,What are you working on?
+O que fez?,What did you do?
+"O que quer que lhe fique no bolso, depois de impostos e contribuições.","What you want to keep, after taxes and contributions."
+O que vai fazer? (opcional),What will you work on? (optional)
+Ocorreu um erro. Tente novamente.,Something went wrong. Please try again.
+"Oferta (conta como feito, não se cobra)","Complimentary (counts as done, not billed)"
+Ofertas,Complimentary
+Outro país — taxa média,Other country — average rate
+Outros,Other
+Pack,Pack
+Pack de horas (em breve),Hour pack (coming soon)
+Packs,Packs
+Packs a testar,Packs to test
+Para cima,Up
+"Para começar, crie um cliente e um acordo (como cobra o tempo a esse cliente).","To begin, create a client and an agreement (how you bill that client's time)."
+Para o portal de consulta e os extratos.,For the client portal and statements.
+Para reinvestir e aguentar meses fracos.,To reinvest and get through slow months.
+Parar e guardar,Stop and save
+Pare o cronómetro antes de editar o registo.,Stop the timer before editing the entry.
+Periodicidade,Frequency
+Por faturar (todos os meses),Unbilled (all months)
+Portugal — sociedade (unipessoal ou por quotas),Portugal — company (single-member or limited)
+Portugal — trabalhador independente (regime simplificado),Portugal — self-employed (simplified regime)
+"Preencha as despesas mensais da sua estrutura, o rendimento que quer receber e o tempo que consegue faturar. A app diz o preço/hora mínimo e o recomendado.","Fill in your monthly overheads, the income you want and the time you can bill. The app gives you the minimum and the recommended hourly rate."
+Preço fixo,Fixed price
+Preço fixo (só para medir a rentabilidade),Fixed price (only to measure profitability)
+Preço mínimo,Minimum price
+Preço recomendado,Recommended price
+Preço/hora,Hourly rate
+Preço/hora por omissão,Default hourly rate
+Regime fiscal,Tax regime
+Registo apagado.,Entry deleted.
+Registo guardado.,Entry saved.
+Registo manual,Manual entry
+Registos da semana,This week's entries
+Rendimento líquido por ano,Net income per year
+Rendimento que quer receber,Income you want
+Resultado,Result
+Resumo,Summary
+Resumo do mês,Month summary
+Retirar,Remove
+Secções,Sections
+Segurança Social,Social Security (PT)
+Seguro de responsabilidade civil,Liability insurance
+Seguros,Insurance
+Sem acesso à app Tempo.,No access to the Tempo app.
+Sem acordos: crie um para poder registar tempo.,No agreements: create one to log time.
+Sem horas faturáveis não há preço possível.,Without billable hours there is no possible price.
+Sem registos neste mês.,No entries this month.
+Sem registos.,No entries.
+Semana,Week
+Semana anterior,Previous week
+Semana seguinte,Next week
+Software,Software
+Software e assinaturas,Software and subscriptions
+Só se descarta um cronómetro a correr.,Only a running timer can be discarded.
+TSU da empresa,Employer Social Security (PT)
+TSU do gerente,Manager Social Security (PT)
+Taxa da Segurança Social,Social Security rate (PT)
+Taxa efetiva/hora,Effective rate/hour
+Taxa média de IRPF,Average income tax rate (ES)
+Taxa média de IRS,Average income tax rate (PT)
+Taxa média de impostos,Average tax rate
+Telefone,Phone
+Telemóvel e internet,Mobile and internet
+Tempo,Tempo
+Tempo faturável (%),Billable time (%)
+Tipo,Type
+Total,Total
+Trabalhadas,Worked
+"Tudo o que paga para poder trabalhar, mesmo sem clientes. Compras grandes (computador, carro) entram divididas pelos anos de uso.","Everything you pay to be able to work, even with no clients. Big purchases (computer, car) are spread over their years of use."
+Título,Title
+Um registo não pode passar de 24 horas.,An entry cannot exceed 24 hours.
+Valor,Amount
+Valores de referência do ano. Confirme-os com o seu contabilista ou gestoria; pode ajustá-los ao seu caso.,Reference values for the year. Confirm them with your accountant; you can adjust them to your case.
+Vazio = o das Definições.,Empty = the one in Settings.
+Vazio = {0} (das Definições / estudo do preço).,Empty = {0} (from Settings / rate study).
+Vem do estudo em uso ({0}).,Comes from the study in use ({0}).
+Voltar ao Orbit,Back to Orbit
+abaixo disto não chega ao rendimento,below this you don't reach your income
+abaixo do preço de referência ({0}),below the reference price ({0})
+abaixo do preço mínimo,below the minimum price
+acima do preço mínimo,above the minimum price
+cobra {0},bills {0}
+"compra, em anos","purchase, over years"
+das Definições,from Settings
+em uso,in use
+ex.: Consultoria de exportação,e.g.: Export consulting
+h com,h with
+inativo,inactive
+mínimo {0},minimum {0}
+não faturável,not billable
+não se cobra à hora,not billed hourly
+oferta,complimentary
+por ano,per year
+por mês,per month
+por validar,not validated
+referência {0},reference {0}
+sem IVA,excl. VAT
+só para manter a atividade aberta,just to keep the business open
+validado,validated
+{0} com IVA,{0} incl. VAT
+{0} h com {1} %,{0} h with {1}%
+{0} h/semana,{0} h/week
+À hora,Hourly
+— Escolha o cliente e o acordo —,— Choose the client and agreement —

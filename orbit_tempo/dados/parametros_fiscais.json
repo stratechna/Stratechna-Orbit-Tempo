@@ -1,0 +1,30 @@
+{
+  "_nota": "Valores de referência do ano. TODOS por validar pela contabilidade (PT) ou gestoria (ES) antes de se considerarem certos; a app mostra-o. Um valor validado num tenant não é reposto por esta lista (instalar.parametros_fiscais só cria o que falta). Para corrigir em todos os tenants, mudar aqui E subir a versao.",
+  "versao": 1,
+  "parametros": [
+    {"pais": "PT", "regime": "PT_IND", "ano": 2026, "chave": "ss_taxa", "valor": 0.214, "unidade": "fração", "descricao": "Taxa contributiva do trabalhador independente", "fonte": "Código Contributivo, art. 168.º"},
+    {"pais": "PT", "regime": "PT_IND", "ano": 2026, "chave": "ss_base", "valor": 0.70, "unidade": "fração", "descricao": "Parte do rendimento relevante na prestação de serviços", "fonte": "Código Contributivo, art. 162.º"},
+    {"pais": "PT", "regime": "PT_IND", "ano": 2026, "chave": "irs_coef", "valor": 0.75, "unidade": "fração", "descricao": "Coeficiente do regime simplificado (actividades da tabela do art. 151.º)", "fonte": "CIRS, art. 31.º"},
+    {"pais": "PT", "regime": "PT_IND", "ano": 2026, "chave": "irs_taxa_media", "valor": 0.20, "unidade": "fração", "descricao": "Taxa média de IRS estimada sobre o rendimento tributável (depende do agregado — ajustar)", "fonte": "Estimativa; escalões do CIRS art. 68.º"},
+    {"pais": "PT", "regime": "PT_IND", "ano": 2026, "chave": "primeiro_ano", "valor": 0, "unidade": "sim/não", "descricao": "Isento de Segurança Social nos primeiros 12 meses de actividade (1 = sim)", "fonte": "Código Contributivo, art. 157.º"},
+    {"pais": "PT", "regime": "PT_IND", "ano": 2026, "chave": "iva_taxa", "valor": 0.23, "unidade": "fração", "descricao": "IVA normal (continente); 0 se isento pelo art. 53.º", "fonte": "CIVA, art. 18.º"},
+
+    {"pais": "PT", "regime": "PT_SOC", "ano": 2026, "chave": "tsu_entidade", "valor": 0.2375, "unidade": "fração", "descricao": "TSU da empresa sobre a remuneração do gerente", "fonte": "Código Contributivo (membros de órgãos estatutários)"},
+    {"pais": "PT", "regime": "PT_SOC", "ano": 2026, "chave": "tsu_trabalhador", "valor": 0.11, "unidade": "fração", "descricao": "Desconto do gerente para a Segurança Social", "fonte": "Código Contributivo (membros de órgãos estatutários)"},
+    {"pais": "PT", "regime": "PT_SOC", "ano": 2026, "chave": "irs_taxa_media", "valor": 0.15, "unidade": "fração", "descricao": "Taxa média de IRS estimada sobre a remuneração do gerente", "fonte": "Estimativa"},
+    {"pais": "PT", "regime": "PT_SOC", "ano": 2026, "chave": "irc_taxa", "valor": 0.17, "unidade": "fração", "descricao": "Taxa de IRC estimada sobre o lucro (PME)", "fonte": "CIRC, art. 87.º"},
+    {"pais": "PT", "regime": "PT_SOC", "ano": 2026, "chave": "iva_taxa", "valor": 0.23, "unidade": "fração", "descricao": "IVA normal (continente)", "fonte": "CIVA, art. 18.º"},
+
+    {"pais": "ES", "regime": "ES_AUT", "ano": 2026, "chave": "cuota_mensal", "valor": 300, "unidade": "€/mês", "descricao": "Cuota de autónomos (por escalão de rendimento; tarifa plana no início)", "fonte": "RDL 13/2022 (sistema de cotización por ingresos reales)"},
+    {"pais": "ES", "regime": "ES_AUT", "ano": 2026, "chave": "irpf_taxa_media", "valor": 0.20, "unidade": "fração", "descricao": "Taxa média de IRPF estimada (retenção 15 %, ou 7 % nos primeiros anos)", "fonte": "Estimativa; LIRPF"},
+    {"pais": "ES", "regime": "ES_AUT", "ano": 2026, "chave": "iva_taxa", "valor": 0.21, "unidade": "fração", "descricao": "IVA general", "fonte": "Ley 37/1992, art. 90"},
+
+    {"pais": "ES", "regime": "ES_SL", "ano": 2026, "chave": "cuota_mensal", "valor": 330, "unidade": "€/mês", "descricao": "Cuota de autónomo societario do administrador", "fonte": "RDL 13/2022"},
+    {"pais": "ES", "regime": "ES_SL", "ano": 2026, "chave": "irpf_taxa_media", "valor": 0.18, "unidade": "fração", "descricao": "Taxa média de IRPF estimada sobre a remuneração do administrador", "fonte": "Estimativa; LIRPF"},
+    {"pais": "ES", "regime": "ES_SL", "ano": 2026, "chave": "is_taxa", "valor": 0.23, "unidade": "fração", "descricao": "Impuesto de Sociedades estimado (pequenas empresas)", "fonte": "Ley 27/2014, art. 29"},
+    {"pais": "ES", "regime": "ES_SL", "ano": 2026, "chave": "iva_taxa", "valor": 0.21, "unidade": "fração", "descricao": "IVA general", "fonte": "Ley 37/1992, art. 90"},
+
+    {"pais": "", "regime": "OUTRO", "ano": 2026, "chave": "taxa_media", "valor": 0.30, "unidade": "fração", "descricao": "Impostos e contribuições, em média, sobre a faturação", "fonte": "Estimativa"},
+    {"pais": "", "regime": "OUTRO", "ano": 2026, "chave": "iva_taxa", "valor": 0, "unidade": "fração", "descricao": "IVA/imposto sobre vendas", "fonte": "Estimativa"}
+  ]
+}

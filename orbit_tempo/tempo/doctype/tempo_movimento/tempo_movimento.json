@@ -1,0 +1,151 @@
+{
+ "doctype": "DocType",
+ "name": "Tempo Movimento",
+ "module": "Tempo",
+ "custom": 0,
+ "engine": "InnoDB",
+ "modified": "2026-10-19 00:00:00.000000",
+ "creation": "2026-10-19 00:00:00.000000",
+ "owner": "Administrator",
+ "modified_by": "Administrator",
+ "field_order": [
+  "cliente",
+  "acordo",
+  "data",
+  "tipo",
+  "c1",
+  "horas",
+  "valor",
+  "faturavel",
+  "oferta",
+  "s2",
+  "registo",
+  "extrato",
+  "c2",
+  "descricao"
+ ],
+ "fields": [
+  {
+   "fieldname": "cliente",
+   "fieldtype": "Link",
+   "label": "Cliente",
+   "options": "Tempo Cliente",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "idx": 1
+  },
+  {
+   "fieldname": "acordo",
+   "fieldtype": "Link",
+   "label": "Acordo",
+   "options": "Tempo Acordo",
+   "in_standard_filter": 1,
+   "idx": 2
+  },
+  {
+   "fieldname": "data",
+   "fieldtype": "Date",
+   "label": "Data",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "tipo",
+   "fieldtype": "Select",
+   "label": "Tipo",
+   "options": "consumo\ncredito\nexpiracao\najuste",
+   "reqd": 1,
+   "in_list_view": 1,
+   "idx": 4
+  },
+  {
+   "fieldname": "c1",
+   "fieldtype": "Column Break",
+   "idx": 5
+  },
+  {
+   "fieldname": "horas",
+   "fieldtype": "Float",
+   "label": "Horas",
+   "in_list_view": 1,
+   "description": "Créditos positivos, consumos e expirações negativos.",
+   "idx": 6
+  },
+  {
+   "fieldname": "valor",
+   "fieldtype": "Currency",
+   "label": "Valor",
+   "idx": 7
+  },
+  {
+   "fieldname": "faturavel",
+   "fieldtype": "Check",
+   "label": "Faturável",
+   "default": "1",
+   "idx": 8
+  },
+  {
+   "fieldname": "oferta",
+   "fieldtype": "Check",
+   "label": "Oferta",
+   "idx": 9
+  },
+  {
+   "fieldname": "s2",
+   "fieldtype": "Section Break",
+   "idx": 10
+  },
+  {
+   "fieldname": "registo",
+   "fieldtype": "Data",
+   "label": "Registo",
+   "read_only": 1,
+   "idx": 11
+  },
+  {
+   "fieldname": "extrato",
+   "fieldtype": "Data",
+   "label": "Extrato",
+   "read_only": 1,
+   "description": "Preenchido quando entra num extrato (F3).",
+   "idx": 12
+  },
+  {
+   "fieldname": "c2",
+   "fieldtype": "Column Break",
+   "idx": 13
+  },
+  {
+   "fieldname": "descricao",
+   "fieldtype": "Small Text",
+   "label": "Descrição",
+   "idx": 14
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "Tempo Utilizador",
+   "read": 1,
+   "report": 1,
+   "export": 1
+  }
+ ],
+ "track_changes": 1,
+ "sort_field": "data",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "format:MOV-{######}",
+ "description": "O livro de horas: créditos (packs, avenças), consumos, expirações e ajustes. Escrito pela app.",
+ "naming_rule": "Expression"
+}
