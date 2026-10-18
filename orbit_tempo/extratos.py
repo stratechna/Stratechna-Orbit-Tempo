@@ -20,7 +20,8 @@ def fechar(cliente: str, desde, ate, acordo: str | None = None) -> str:
                                                       "desde": desde, "ate": ate})
     ext = frappe.get_doc("Tempo Extrato", existente) if existente else frappe.get_doc(
         {"doctype": "Tempo Extrato", "cliente": cliente, "acordo": acordo, "desde": desde, "ate": ate})
-    if ext.estado != "Rascunho":
+    # um documento novo só recebe o estado por omissão («Rascunho») ao gravar
+    if (ext.estado or "Rascunho") != "Rascunho":
         frappe.throw(_("Este extrato já foi enviado."))
     filtros = {"cliente": cliente, "data": ["between", [desde, ate]], "extrato": ["in", ["", None] + ([ext.name] if ext.name else [])]}
     if acordo:
