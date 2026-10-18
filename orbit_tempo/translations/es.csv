@@ -130,7 +130,6 @@ Novo acordo,Nuevo acuerdo
 Novo cliente,Nuevo cliente
 Novo estudo,Nuevo estudio
 Novo registo,Nuevo registro
-O bloco de arredondamento não pode ser negativo.,El bloque de redondeo no puede ser negativo.
 O estudo ainda não tem preço recomendado.,El estudio todavía no tiene precio recomendado.
 O estudo não fecha: {0},El estudio no cuadra: {0}
 O fim é anterior ao início.,El fin es anterior al inicio.
@@ -218,6 +217,7 @@ abaixo disto não chega ao rendimento,por debajo no llega a los ingresos
 abaixo do preço de referência ({0}),por debajo del precio de referencia ({0})
 abaixo do preço mínimo,por debajo del precio mínimo
 acima do preço mínimo,por encima del precio mínimo
+ao minuto,al minuto
 cobra {0},cobra {0}
 "compra, em anos","compra, en años"
 das Definições,de los Ajustes

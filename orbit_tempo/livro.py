@@ -30,16 +30,20 @@ def regras_do_acordo(acordo) -> dict:
     if isinstance(acordo, str):
         acordo = frappe.get_cached_doc("Tempo Acordo", acordo)
 
-    def escolher(campo, omissao=None):
+    def escolher(campo, omissao=None, zero_vazio=False):
+        # No acordo, o bloco e o mínimo são escolhas em texto: "" herda, "0" é zero a sério.
+        # O preço é numérico e o Frappe grava o vazio como 0 — por isso 0 também herda.
         v = acordo.get(campo)
-        return v if v not in (None, "") else (d.get(campo) if d.get(campo) not in (None, "") else omissao)
+        if v in (None, "") or (zero_vazio and not v):
+            v = d.get(campo)
+        return v if v not in (None, "") else omissao
 
     return {
         "tipo": acordo.tipo,
         "bloco": int(escolher("arredondamento_bloco", 15) or 0),
         "modo": escolher("arredondamento_modo", "cima") or "cima",
         "minimo": int(escolher("minimo_minutos", 0) or 0),
-        "preco_hora": float(escolher("preco_hora", 0) or 0),
+        "preco_hora": float(escolher("preco_hora", 0, zero_vazio=True) or 0),
     }
 
 

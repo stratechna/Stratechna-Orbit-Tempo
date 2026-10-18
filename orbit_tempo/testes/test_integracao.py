@@ -42,7 +42,7 @@ class TestTempo(IntegrationTestCase):
         frappe.db.set_value("Tempo Parametro Fiscal", "PT_IND-2026-irs_taxa_media", "valor", 0.20)
 
     def test_registo_arredonda_e_gera_movimento(self):
-        acordo = _acordo(_cliente(), preco_hora=50, arredondamento_bloco=15, arredondamento_modo="cima")
+        acordo = _acordo(_cliente(), preco_hora=50, arredondamento_bloco="15", arredondamento_modo="cima")
         r = api.guardar_registo({"acordo": acordo, "data": today(), "minutos": 20, "descricao": "Reunião"})
         self.assertEqual(r["minutos_faturados"], 30)
         self.assertEqual(r["valor"], 25)
@@ -60,7 +60,7 @@ class TestTempo(IntegrationTestCase):
         self.assertFalse(frappe.db.exists("Tempo Movimento", reg.movimento))
 
     def test_preco_do_registo_nao_muda_com_o_acordo(self):
-        acordo = _acordo(_cliente(), titulo="Preço guardado", preco_hora=40, arredondamento_bloco=0)
+        acordo = _acordo(_cliente(), titulo="Preço guardado", preco_hora=40, arredondamento_bloco="0")
         r = api.guardar_registo({"acordo": acordo, "data": today(), "minutos": 60})
         frappe.db.set_value("Tempo Acordo", acordo, "preco_hora", 80)
         frappe.clear_document_cache("Tempo Acordo", acordo)
@@ -74,8 +74,8 @@ class TestTempo(IntegrationTestCase):
         self.assertEqual(r["minutos_faturados"], 90)
 
     def test_cronometro(self):
-        a1 = _acordo(_cliente(), titulo="Crono A", preco_hora=60, arredondamento_bloco=0)
-        a2 = _acordo(_cliente(), titulo="Crono B", preco_hora=60, arredondamento_bloco=0)
+        a1 = _acordo(_cliente(), titulo="Crono A", preco_hora=60, arredondamento_bloco="0")
+        a2 = _acordo(_cliente(), titulo="Crono B", preco_hora=60, arredondamento_bloco="0")
         r1 = api.iniciar(a1, "primeiro")
         self.assertEqual(r1["em_curso"], 1)
         self.assertIsNone(frappe.db.get_value("Tempo Registo", r1["name"], "movimento"))
@@ -104,13 +104,17 @@ class TestTempo(IntegrationTestCase):
         self.assertEqual(d.estudo_ativo, e["name"])
 
         # um acordo sem preço usa o das Definições
-        acordo = _acordo(_cliente(), titulo="Sem preço", arredondamento_bloco=0)
+        acordo = _acordo(_cliente(), titulo="Sem preço", arredondamento_bloco="0")
         r = api.guardar_registo({"acordo": acordo, "data": today(), "minutos": 60})
         self.assertAlmostEqual(r["valor"], 50.09, places=2)
+        # o mesmo com preço 0 (o Frappe grava assim o vazio)
+        acordo0 = _acordo(_cliente(), titulo="Preço zero", preco_hora=0, arredondamento_bloco="0")
+        r = api.guardar_registo({"acordo": acordo0, "data": today(), "minutos": 30})
+        self.assertAlmostEqual(r["valor"], 25.05, delta=0.011)
 
     def test_resumo(self):
         c = _cliente("Cliente do resumo")
-        acordo = _acordo(c, titulo="Resumo", preco_hora=30, arredondamento_bloco=0)
+        acordo = _acordo(c, titulo="Resumo", preco_hora=30, arredondamento_bloco="0")
         api.guardar_registo({"acordo": acordo, "data": today(), "minutos": 120})
         res = api.resumo(today()[:7])
         linha = next(l for l in res["linhas"] if l.acordo == acordo)

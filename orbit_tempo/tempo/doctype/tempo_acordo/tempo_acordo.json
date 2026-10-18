@@ -98,7 +98,7 @@
    "fieldname": "preco_hora",
    "fieldtype": "Currency",
    "label": "Preço/hora",
-   "description": "Vazio = o das Definições.",
+   "description": "Vazio ou 0 = o das Definições.",
    "idx": 9
   },
   {
@@ -151,8 +151,10 @@
   },
   {
    "fieldname": "arredondamento_bloco",
-   "fieldtype": "Int",
+   "fieldtype": "Select",
    "label": "Bloco (minutos)",
+   "options": "\n0\n1\n5\n6\n10\n15\n30\n60",
+   "description": "Escolha e não número: num campo numérico o vazio grava-se 0, e 0 aqui quer dizer «ao minuto».",
    "idx": 17
   },
   {
@@ -169,8 +171,9 @@
   },
   {
    "fieldname": "minimo_minutos",
-   "fieldtype": "Int",
+   "fieldtype": "Select",
    "label": "Mínimo por registo (minutos)",
+   "options": "\n0\n5\n10\n15\n30\n60",
    "idx": 20
   },
   {

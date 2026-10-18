@@ -130,7 +130,6 @@ Novo acordo,New agreement
 Novo cliente,New client
 Novo estudo,New study
 Novo registo,New entry
-O bloco de arredondamento não pode ser negativo.,The rounding block cannot be negative.
 O estudo ainda não tem preço recomendado.,The study does not have a recommended price yet.
 O estudo não fecha: {0},The study does not add up: {0}
 O fim é anterior ao início.,The end is before the start.
@@ -218,6 +217,7 @@ abaixo disto não chega ao rendimento,below this you don't reach your income
 abaixo do preço de referência ({0}),below the reference price ({0})
 abaixo do preço mínimo,below the minimum price
 acima do preço mínimo,above the minimum price
+ao minuto,to the minute
 cobra {0},bills {0}
 "compra, em anos","purchase, over years"
 das Definições,from Settings

@@ -441,12 +441,14 @@
 				h("option", { value: v, selected: (a.tipo || "Hora") === v ? "selected" : null, disabled: v === "Pack" || v === "Avença" ? "disabled" : null }, t(r)))),
 			preco_hora: h("input", { class: "tp-campo", type: "number", step: "0.01", min: "0", value: a.preco_hora || "",
 				placeholder: d.preco_hora ? fmtNum(d.preco_hora) : "" }),
-			arredondamento_bloco: h("input", { class: "tp-campo", type: "number", min: "0", step: "1", value: a.arredondamento_bloco ?? "",
-				placeholder: String(d.arredondamento_bloco ?? 15) }),
+			arredondamento_bloco: h("select", { class: "tp-campo" }, ["", "0", "1", "5", "6", "10", "15", "30", "60"].map((v) =>
+				h("option", { value: v, selected: String(a.arredondamento_bloco ?? "") === v ? "selected" : null },
+					v === "" ? t("Das Definições") + " (" + (d.arredondamento_bloco ?? 15) + ")" : v === "0" ? t("ao minuto") : v))),
 			arredondamento_modo: h("select", { class: "tp-campo" }, [["", t("Das Definições")], ["cima", t("Para cima")], ["proximo", t("Ao mais próximo")]].map(([v, r]) =>
 				h("option", { value: v, selected: (a.arredondamento_modo || "") === v ? "selected" : null }, r))),
-			minimo_minutos: h("input", { class: "tp-campo", type: "number", min: "0", step: "1", value: a.minimo_minutos ?? "",
-				placeholder: String(d.minimo_minutos || 0) }),
+			minimo_minutos: h("select", { class: "tp-campo" }, ["", "0", "5", "10", "15", "30", "60"].map((v) =>
+				h("option", { value: v, selected: String(a.minimo_minutos ?? "") === v ? "selected" : null },
+					v === "" ? t("Das Definições") + " (" + (d.minimo_minutos || 0) + ")" : v))),
 			cor: h("input", { class: "tp-campo tp-cor-in", type: "color", value: a.cor || "#22303d" }),
 			ativo: h("input", { type: "checkbox", checked: a.ativo !== 0 }),
 		};

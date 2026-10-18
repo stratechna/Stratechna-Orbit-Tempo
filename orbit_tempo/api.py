@@ -218,7 +218,7 @@ def guardar_acordo(dados):
             doc.set(c, flt(dados[c]) if dados[c] not in (None, "") else None)
     for c in ("arredondamento_bloco", "minimo_minutos"):
         if c in dados:
-            doc.set(c, cint(dados[c]) if dados[c] not in (None, "") else None)
+            doc.set(c, str(cint(dados[c])) if dados[c] not in (None, "") else "")
     if "ativo" in dados:
         doc.ativo = cint(dados["ativo"])
     doc.save() if dados.get("name") else doc.insert()
