@@ -76,7 +76,7 @@ jobs:
           curl -sf -b jar -H "$H" localhost:8000/tempo/semana | grep -q "TEMPO_BOOT"
           # sem sessão, vai para a entrada
           test "$(curl -s -o /dev/null -w '%{http_code}' -H "$H" localhost:8000/tempo)" = "302"
-          TOKEN=$(python -c "import re,json;h=open('tempo.html').read();print(json.loads(re.search(r'TEMPO_BOOT = (\{.*?\});',h).group(1))['csrf_token'])")
+          TOKEN=$(python -c "import re,json;h=open('tempo.html').read();print(json.loads(re.search(r'TEMPO_BOOT = (\{.*\});</script>',h).group(1))['csrf_token'])")
           curl -sf -b jar -H "$H" localhost:8000/api/method/orbit_tempo.api.arranque | grep -q '"regimes"'
           curl -sf -b jar -H "$H" -H "X-Frappe-CSRF-Token: $TOKEN" -H "Content-Type: application/json" \
             -X POST localhost:8000/api/method/orbit_tempo.api.guardar_cliente \

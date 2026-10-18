@@ -41,6 +41,6 @@ def get_context(context):
         "lang": lang,
         "versao": __version__,
         "traducoes": traducoes(lang),
-    }, ensure_ascii=False)
+    }, ensure_ascii=False).replace("</", "<\\/")  # nada no JSON pode fechar o <script>
     frappe.db.commit()  # o csrf_token novo grava-se na sessão
     return context
