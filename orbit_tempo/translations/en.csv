@@ -274,6 +274,7 @@ O contacto não está ligado a um cliente.,The contact is not linked to a client
 O contacto não tem um email válido.,The contact has no valid email.
 O cronómetro tem menos de um minuto. Descarte-o ou continue.,The timer has less than a minute. Discard it or carry on.
 O desconto vai de 0 a 99 %.,The discount ranges from 0 to 99%.
+O email não foi enviado: este Orbit ainda não tem conta de correio de saída.,The email was not sent: this Orbit has no outgoing email account yet.
 O estudo ainda não tem preço recomendado.,The study does not have a recommended price yet.
 O estudo não fecha: {0},The study does not add up: {0}
 "O extrato fica em rascunho: confira e envie. Depois de enviado, as linhas só se corrigem por ajuste.","The statement stays in draft: check it and send it. Once sent, lines can only be corrected by an adjustment."

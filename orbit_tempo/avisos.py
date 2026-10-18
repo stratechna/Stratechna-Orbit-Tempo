@@ -50,10 +50,22 @@ def _enviar(destinatarios, assunto, corpo, cliente=None, referencia=None):
     if not destinatarios:
         return
     lang = _lingua(cliente) if cliente else None
-    frappe.sendmail(recipients=destinatarios, subject=assunto, message=corpo, reference_doctype=referencia and referencia.doctype,
-                    reference_name=referencia and referencia.name, send_after=proxima_janela() if cliente else None,
-                    header=[_marca(), "gray"], now=False)
+    _mandar(recipients=destinatarios, subject=assunto, message=corpo, reference_doctype=referencia and referencia.doctype,
+            reference_name=referencia and referencia.name, send_after=proxima_janela() if cliente else None,
+            header=[_marca(), "gray"], now=False)
     return lang
+
+
+def _mandar(**kw) -> bool:
+    """Um aviso por email nunca trava a operação (o extrato, o saldo, a entrada continuam visíveis no
+    portal do cliente). Sem conta de correio de saída, fica no registo de erros e um aviso no ecrã."""
+    try:
+        frappe.sendmail(**kw)
+        return True
+    except frappe.OutgoingEmailError:
+        frappe.log_error(title="Stratechna Tempo: email não enviado (sem conta de saída)", message=str(kw.get("subject")))
+        frappe.msgprint(_("O email não foi enviado: este Orbit ainda não tem conta de correio de saída."), indicator="orange", alert=True)
+        return False
 
 
 def extrato_enviado(ext):
@@ -89,8 +101,8 @@ def saldo_baixo(cliente, acordo, disponivel):
 def ligacao_de_entrada(email, ligacao):
     corpo = (f"<p>{_('Use esta ligação para entrar na sua área de cliente. É válida durante 30 minutos e só uma vez.')}</p>"
              f"<p><a href=\"{ligacao}\">{_('Entrar')}</a></p>")
-    frappe.sendmail(recipients=[email], subject=_("A sua ligação de entrada — {0}").format(_marca()), message=corpo,
-                    header=[_marca(), "gray"], now=True)
+    _mandar(recipients=[email], subject=_("A sua ligação de entrada — {0}").format(_marca()), message=corpo,
+            header=[_marca(), "gray"], now=True)
 
 
 class _na_lingua:
