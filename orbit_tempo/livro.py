@@ -119,7 +119,7 @@ def ao_submeter(doc, method=None):
             "faturavel": 1 if linha.is_billable else 0, "oferta": 0 if linha.is_billable else 1,
             "timesheet": doc.name, "timesheet_linha": linha.name,
             "bilhete": doc.get("custom_hd_ticket"), "tarefa": linha.task,
-            "utilizador": doc.get("user") or doc.owner,
+            "utilizador": doc.flags.get("tempo_utilizador") or doc.get("user") or doc.owner,
             "descricao": linha.description or doc.get("note"),
         }
         existente = frappe.db.get_value("Tempo Movimento", {"timesheet_linha": linha.name})

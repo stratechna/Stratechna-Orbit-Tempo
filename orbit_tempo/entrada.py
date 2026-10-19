@@ -62,10 +62,15 @@ def registar(acordo: str, horas: float, inicio=None, descricao: str | None = Non
     })
     if bilhete and ts.meta.has_field("custom_hd_ticket"):
         ts.custom_hd_ticket = bilhete
-    if utilizador:
-        ts.user = utilizador
+    # O ERPNext apaga o `user` da folha quando não há funcionário associado (Timesheet.set_user):
+    # quem registou vai numa flag para o livro, e grava-se na folha depois de submetida.
+    utilizador = utilizador or frappe.session.user
+    ts.user = utilizador
+    ts.flags.tempo_utilizador = utilizador
     ts.insert()
     ts.submit()
+    if ts.user != utilizador and frappe.db.exists("User", utilizador):
+        frappe.db.set_value("Timesheet", ts.name, "user", utilizador, update_modified=False)
     linha = ts.time_logs[0].name
     return {"timesheet": ts.name, "linha": linha,
             "movimento": frappe.db.get_value("Tempo Movimento", {"timesheet_linha": linha})}

@@ -112,6 +112,7 @@ class TestTempoV2(IntegrationTestCase):
                                                        "segundos_pausa": 600})
         r = entrada.parar(nome)
         self.assertAlmostEqual(-_mov(r).horas, 0.5, delta=0.02)
+        self.assertEqual(_mov(r).utilizador, "Administrator")   # quem registou fica no livro
         self.assertFalse(frappe.db.exists("Tempo Cronometro", nome))
 
     def test_extrato_tranca_contesta_e_aprova(self):
